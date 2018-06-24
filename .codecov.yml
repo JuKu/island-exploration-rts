@@ -1,0 +1,51 @@
+codecov:
+  notify:
+    require_ci_to_pass: yes
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+
+  status:
+    project: yes
+    patch: yes
+    changes: no
+
+ignore:
+  - **/DesktopLauncher.java
+  - **/GameGUI.java
+  - **/FileUtils.java
+  - **/WebUtils.java
+  - **/SocketUtils.java
+  - **/WebUtils.java
+  - **/TexturePackerHelper.java
+  - **/*Screen.java
+  - **/*Asset*.java
+  - **/LoadingBar.java
+  - **/SkinFactory.java
+  - **/JarUtils.java
+  - **/PlatformUtils.java
+  - **/Test.java
+  - **/Version.java
+  - **/BitmapFontFactory.java
+  - **/AssetInfo.java
+  - **/AssetNotLoadedException.java
+  - **/Config.java
+#  - "path/to/folder"  # ignore folders and all its contents
+#  - "test_*.rb"       # wildcards accepted
+#  - "**/*.py"         # glob accepted#
+#  - "[a-z]+/test_.*"  # regexp accepted
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
+
+comment:
+  layout: "header, diff"
+  behavior: default
+  require_changes: no
