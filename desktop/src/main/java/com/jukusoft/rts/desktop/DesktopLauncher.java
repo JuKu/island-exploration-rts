@@ -1,6 +1,5 @@
 package com.jukusoft.rts.desktop;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.jukusoft.rts.game.Game;
