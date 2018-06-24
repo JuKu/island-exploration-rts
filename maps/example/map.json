@@ -1,0 +1,13 @@
+{
+	"title": "Example",
+	"width": 6400,
+	"height": 6400,
+	"minimap": "minimap.png",
+	"underground": "tileset.png",
+	"soundtracks": [
+		{
+			"path": "music/TownTheme.mp3",
+			"tag": "GAME_START"
+		}
+	]
+}
