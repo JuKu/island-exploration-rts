@@ -32,6 +32,13 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<!-- ini4j -->
+		<dependency>
+			<groupId>org.ini4j</groupId>
+			<artifactId>ini4j</artifactId>
+			<version>${ini4j.version}</version>
+		</dependency>
+
 		<!-- libGDX LWJGL Backend -->
 		<dependency>
 			<groupId>com.badlogicgames.gdx</groupId>
