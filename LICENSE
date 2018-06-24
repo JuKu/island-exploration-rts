@@ -1,0 +1,10 @@
+==========================
+ Licensing Details
+==========================
+
+The distribution includes several different types of files, and also some third-party components.
+The details are described here, based on the directory structure.
+
+  /src - GPL version 2 (or later)
+  /data - see LICENSE.txt within those directories
+  /tools - see LICENSE.txt within those directories
