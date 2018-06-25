@@ -45,3 +45,9 @@ Thank you very much!
   - https://opengameart.org/content/pirates-libertaires
   - https://opengameart.org/content/rpg-battle-theme-the-last-encounter-0 (battles)
   - https://opengameart.org/content/woodland-fantasy
+  - https://opengameart.org/content/snowland-town (peaceful island)
+  - https://opengameart.org/content/pleasant-creek (calm)
+  - https://opengameart.org/content/riverside-ride (party in town)
+  - https://opengameart.org/content/lively-meadow-victory-fanfare-and-song (winner song)
+  - https://opengameart.org/content/enchanted-festival (island)
+  - https://opengameart.org/content/rpgmusic
