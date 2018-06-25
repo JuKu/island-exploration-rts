@@ -53,8 +53,6 @@ public class GameGUI implements ApplicationListener {
 
     @Override
     public void resize(int width, int height) {
-        LocalLogger.print("resize window.");
-
         this.screenManager.resize(width, height);
     }
 

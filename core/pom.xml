@@ -19,6 +19,13 @@
 			<version>${ini4j.version}</version>
 		</dependency>
 
+		<!-- org.json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+
 		<!-- High Performance Primitive Collections for Java, https://github.com/carrotsearch/hppc -->
 		<dependency>
 			<groupId>com.carrotsearch</groupId>
