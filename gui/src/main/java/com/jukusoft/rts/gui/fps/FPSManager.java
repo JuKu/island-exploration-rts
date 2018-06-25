@@ -1,5 +1,6 @@
 package com.jukusoft.rts.gui.fps;
 
+import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.time.GameTime;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -40,9 +41,7 @@ public class FPSManager {
             long lastWarnSecond = this.lastWarningSecond / 1000;
 
             if (nowWarnSecond != lastWarnSecond) {
-                //TODO: print warning on console
-
-                //LocalLogger.print("Warning! FPS is <= " + this.criticalFPSValue + ", current value: " + this.fps.get() + "!");
+                LocalLogger.print("Warning! FPS is <= " + this.criticalFPSValue + ", current value: " + this.fps.get() + "!");
 
                 this.lastWarningSecond = System.currentTimeMillis();
             }
