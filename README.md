@@ -35,3 +35,20 @@ Seid gespannt!
 ## Keyboard Shortcuts
 
   - CTRL + F **toggle fullscreen mode**
+  
+## ToDo
+
+  - https://www.bountysource.com/
+  
+## System requirements
+
+  - Java 8+
+  - Graphics Card with OpenGL 2.0 + Framebuffer Extension
+  
+## Building from source
+
+You can easely build the game from source, using maven:
+
+```bash
+mvn clean install
+```
