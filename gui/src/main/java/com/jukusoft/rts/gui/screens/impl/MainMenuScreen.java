@@ -85,7 +85,7 @@ public class MainMenuScreen implements IScreen {
         buttons = new TextButton[10];
 
         //create buttons
-        TextButton newGameBtn = new TextButton(I.tr("New continuous game"), this.skin);
+        TextButton newGameBtn = new TextButton(I.tr("New Game"), this.skin);
         stage.addActor(newGameBtn);
         buttons[0] = newGameBtn;
 
@@ -149,6 +149,20 @@ public class MainMenuScreen implements IScreen {
         shipBG.setX(0);
         shipBG.setY(0);
         shipBG.invalidate();
+
+        float startX = shipBG.getWidth() - 320;
+        float startY = shipBG.getHeight() - 60;
+
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i] != null) {
+                buttons[i].setWidth(300);
+
+                buttons[i].setX(startX);
+                buttons[i].setY(startY - i * 50);
+
+                buttons[i].invalidate();
+            }
+        }
 
         versionLabel.setX(20);
         versionLabel.setY(20);
