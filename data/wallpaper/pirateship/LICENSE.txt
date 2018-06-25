@@ -1,0 +1,10 @@
+License: CC-BY 4.0
+License Link: https://creativecommons.org/licenses/by/4.0/
+
+Author: KokoroReflections
+
+Large pirate-style ship suitable for seafaring cutscenes, etc.  Comes in two pieces so you can overlay the sails, etc over other elements if you need to. 
+
+More info here: https://kokororeflections.com/free-old-fashioned-parallax-pirate-ship-for-rpg-maker/
+
+More free stuff here: https://kokororeflections.com/category/free-stuff/
