@@ -31,3 +31,7 @@ Mit [Unknown Horizons](http://unknown-horizons.org/) (ehemals "Free Anno") gab e
 Jetzt habe ich begonnen ein eigenes kleines Aufbau- & RTS-Spiel zu starten, welches auf diesem Genre anknüpft.\
 Seid gespannt!
 ```
+
+## Keyboard Shortcuts
+
+  - CTRL + F **toggle fullscreen mode**
