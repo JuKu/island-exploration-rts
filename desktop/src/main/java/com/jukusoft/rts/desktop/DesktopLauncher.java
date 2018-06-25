@@ -28,6 +28,8 @@ public class DesktopLauncher {
         //I.setLanguage(new Locale("en", "US"));
         I.setLanguage("en");
 
+        //https://github.com/awkay/easy-i18n/wiki/Getting-Started
+        //https://github.com/awkay/easy-i18n/wiki/Gettext-tutorial
         LocalLogger.print(I.tr("Startup game now."));
 
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
