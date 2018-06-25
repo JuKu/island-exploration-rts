@@ -49,5 +49,5 @@ Thank you very much!
   - https://opengameart.org/content/pleasant-creek (calm)
   - https://opengameart.org/content/riverside-ride (party in town)
   - https://opengameart.org/content/lively-meadow-victory-fanfare-and-song (winner song)
-  - https://opengameart.org/content/enchanted-festival (island)
+  - https://opengameart.org/content/enchanted-festival (island, after new game started)
   - https://opengameart.org/content/rpgmusic
