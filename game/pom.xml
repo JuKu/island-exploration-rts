@@ -9,9 +9,16 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>ship-rts-core</artifactId>
+	<artifactId>ship-rts-game</artifactId>
 
 	<dependencies>
+		<!-- core -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>ship-rts-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- High Performance Primitive Collections for Java, https://github.com/carrotsearch/hppc -->
 		<dependency>
 			<groupId>com.carrotsearch</groupId>

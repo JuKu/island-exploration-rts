@@ -1,6 +1,6 @@
 package com.jukusoft.rts.gui.screens;
 
-import com.jukusoft.rts.game.Game;
+import com.jukusoft.rts.core.Game;
 
 /**
  * Screen interface - screens are responsible for drawing, not for updating your game state!

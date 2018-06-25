@@ -1,6 +1,6 @@
 package com.jukusoft.rts.gui.screens.impl;
-import com.jukusoft.rts.game.Game;
-import com.jukusoft.rts.game.utils.Platform;
+import com.jukusoft.rts.core.Game;
+import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.gui.GameUnitTest;
 import com.jukusoft.rts.gui.screens.*;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.jukusoft.rts.gui.screens;
 
-import com.jukusoft.rts.game.Game;
+import com.jukusoft.rts.core.Game;
 
 public class DummyScreen implements IScreen {
 

@@ -33,6 +33,13 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<!-- game -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>ship-rts-game</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- gui -->
 		<dependency>
 			<groupId>com.jukusoft</groupId>

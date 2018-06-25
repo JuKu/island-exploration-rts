@@ -13,6 +13,7 @@
 		<module>core</module>
 		<module>desktop</module>
 		<module>gui</module>
+		<module>game</module>
 	</modules>
 
 	<properties>

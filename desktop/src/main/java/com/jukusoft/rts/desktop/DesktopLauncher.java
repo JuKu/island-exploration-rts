@@ -2,6 +2,8 @@ package com.jukusoft.rts.desktop;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.jukusoft.rts.core.Game;
+import com.jukusoft.rts.game.RTSGame;
 import com.jukusoft.rts.gui.GameGUI;
 
 import java.io.IOException;
@@ -16,7 +18,8 @@ public class DesktopLauncher {
         windowConfig.fillConfig(config);
 
         // start game
-        new Lwjgl3Application(new GameGUI(), config);
+        Game game = new RTSGame();
+        new Lwjgl3Application(new GameGUI(game), config);
 
         System.exit(0);
     }

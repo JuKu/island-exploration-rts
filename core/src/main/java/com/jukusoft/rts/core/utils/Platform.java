@@ -1,4 +1,4 @@
-package com.jukusoft.rts.game.utils;
+package com.jukusoft.rts.core.utils;
 
 import com.carrotsearch.hppc.ObjectStack;
 
