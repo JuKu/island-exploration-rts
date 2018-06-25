@@ -85,9 +85,29 @@ public class MainMenuScreen implements IScreen {
         buttons = new TextButton[10];
 
         //create buttons
-        TextButton newGameBtn = new TextButton(I.tr("New Game"), this.skin);
+        TextButton newGameBtn = new TextButton(I.tr("New continuous game"), this.skin);
         stage.addActor(newGameBtn);
         buttons[0] = newGameBtn;
+
+        TextButton newCampaignGameBtn = new TextButton(I.tr("Campaign"), this.skin);
+        stage.addActor(newCampaignGameBtn);
+        buttons[1] = newCampaignGameBtn;
+
+        TextButton loadGameBtn = new TextButton(I.tr("Load Game"), this.skin);
+        stage.addActor(loadGameBtn);
+        buttons[2] = loadGameBtn;
+
+        TextButton optionsBtn = new TextButton(I.tr("Options"), this.skin);
+        stage.addActor(optionsBtn);
+        buttons[3] = optionsBtn;
+
+        TextButton creditsBtn = new TextButton(I.tr("Credits"), this.skin);
+        stage.addActor(creditsBtn);
+        buttons[4] = creditsBtn;
+
+        TextButton quitBtn = new TextButton(I.tr("Quit Game"), this.skin);
+        stage.addActor(quitBtn);
+        buttons[5] = quitBtn;
 
         //get client version
         Version version = Version.getInstance();
