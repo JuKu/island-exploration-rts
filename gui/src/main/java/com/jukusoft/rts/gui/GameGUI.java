@@ -12,7 +12,9 @@ import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.fps.FPSManager;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
+import com.jukusoft.rts.gui.screens.Screens;
 import com.jukusoft.rts.gui.screens.impl.DefaultScreenManager;
+import com.jukusoft.rts.gui.screens.impl.MainMenuScreen;
 
 public class GameGUI implements ApplicationListener {
 
@@ -37,7 +39,11 @@ public class GameGUI implements ApplicationListener {
 
     @Override
     public void create() {
+        //add screens
+        this.screenManager.addScreen(Screens.MAIN_MENU, new MainMenuScreen());
 
+        //activate screen
+        this.screenManager.leaveAllAndEnter(Screens.MAIN_MENU);
     }
 
     @Override

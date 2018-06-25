@@ -43,6 +43,9 @@
 		<!-- ini4j parser -->
 		<ini4j.version>0.5.4</ini4j.version>
 
+		<!-- org.json -->
+		<json.version>20180130</json.version>
+
 		<jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
 
 		<!-- Sonar properties-->

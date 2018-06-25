@@ -1,0 +1,54 @@
+package com.jukusoft.rts.core.utils;
+
+import org.junit.Test;
+
+import java.io.File;
+import java.net.URISyntaxException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class JarUtilsTest {
+
+    @Test
+    public void testConstructor () {
+        new JarUtils();
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void testGetNullJarFile () {
+        JarUtils.getJarFileOfClass(null);
+    }
+
+    @Test
+    public void testGetJarFile () {
+        File file = JarUtils.getJarFileOfClass(String.class);
+
+        System.out.println("jar file: " + file.getAbsolutePath());
+
+        assertNotNull(file);
+        assertEquals(true, file.getAbsolutePath().endsWith("jar"));
+    }
+
+    @Test
+    public void testGetJarPath () throws URISyntaxException {
+        String path = JarUtils.getJarPath(JarUtilsTest.class);
+        System.out.println("jar path: " + path);
+
+        assertNotNull(path);
+        assertEquals(false, path.isEmpty());
+    }
+
+    @Test
+    public void testPathToFile () {
+        String jarPath = "jar:file:jar-file.jar!test.class";
+        JarUtils.pathToFile(jarPath, "");
+    }
+
+    @Test
+    public void testPathToFile1 () {
+        String jarPath = "file:jar-file.jar";
+        JarUtils.pathToFile(jarPath, "");
+    }
+
+}
