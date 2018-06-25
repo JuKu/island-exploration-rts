@@ -146,8 +146,9 @@
 					</execution>
 				</executions>
 				<configuration>
+					<keysFile>messages.pot</keysFile>
 					<poDirectory>${basedir}/../data/po</poDirectory>
-					<targetBundle>com.jukusoft.rts.game.RTSGame</targetBundle>
+					<targetBundle>com.jukusoft.rts.gui.GameGUI</targetBundle>
 					<outputFormat>properties</outputFormat>
 				</configuration>
 			</plugin>

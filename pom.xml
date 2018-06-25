@@ -109,6 +109,13 @@
 			<artifactId>gettext-commons</artifactId>
 			<version>0.9.8</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.teamunify/easy-i18n -->
+		<dependency>
+			<groupId>com.teamunify</groupId>
+			<artifactId>easy-i18n</artifactId>
+			<version>0.9.11</version>
+		</dependency>
 	</dependencies>
 
 	<reporting>

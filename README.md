@@ -52,3 +52,7 @@ You can easely build the game from source, using maven:
 ```bash
 mvn clean install
 ```
+
+## Translations
+
+https://poeditor.com/join/project/wSLmNkicot
