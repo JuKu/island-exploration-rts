@@ -13,7 +13,6 @@ import com.teamunify.i18n.settings.GlobalLanguageSettingsProvider;
 import com.teamunify.i18n.settings.LanguageSetting;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class DesktopLauncher {
 
