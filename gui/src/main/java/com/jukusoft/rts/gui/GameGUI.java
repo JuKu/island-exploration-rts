@@ -2,6 +2,8 @@ package com.jukusoft.rts.gui;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.jukusoft.rts.core.Game;
@@ -26,6 +28,9 @@ public class GameGUI implements ApplicationListener {
 
     //window background (clear) color
     protected Color bgColor = Color.BLACK;
+
+    protected int lastWidth = 1280;
+    protected int lastHeight = 720;
 
     /**
      * default constructor
@@ -67,6 +72,17 @@ public class GameGUI implements ApplicationListener {
 
         //execute tasks, which should be executed in OpenGL context thread
         Platform.executeQueue();
+
+        //toggle fullscreen mode
+        if ((Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.ALT_RIGHT)) && Gdx.input.isKeyJustPressed(Input.Keys.F)) {
+            //toggle fullscreen mode
+            if (Gdx.graphics.isFullscreen()) {
+                Gdx.graphics.setWindowedMode(this.lastWidth, this.lastHeight);
+            } else {
+                Graphics.DisplayMode primaryMode = Gdx.graphics.getDisplayMode();
+                Gdx.graphics.setFullscreenMode(primaryMode);
+            }
+        }
 
         //load assets
         assetManager.update();

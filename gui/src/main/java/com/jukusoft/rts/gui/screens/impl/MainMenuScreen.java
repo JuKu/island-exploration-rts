@@ -118,12 +118,12 @@ public class MainMenuScreen implements IScreen {
         stage.getViewport().setScreenSize(width, height);
 
         //make the background fill the screen
-        screenBG.setSize(width, height);
+        //screenBG.setSize(width, height);
         screenBG.invalidate();
 
         shipBG.setX(0);
         shipBG.setY(0);
-        shipBG.setSize(width, height);
+        //shipBG.setSize(width, height);
         shipBG.invalidate();
 
         versionLabel.setX(20);
