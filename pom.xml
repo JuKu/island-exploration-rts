@@ -11,9 +11,9 @@
 
 	<modules>
 		<module>core</module>
-		<module>desktop</module>
-		<module>gui</module>
 		<module>game</module>
+		<module>gui</module>
+		<module>desktop</module>
 	</modules>
 
 	<properties>
