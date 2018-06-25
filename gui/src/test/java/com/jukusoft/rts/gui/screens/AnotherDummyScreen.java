@@ -1,6 +1,6 @@
 package com.jukusoft.rts.gui.screens;
 
-import com.badlogic.gdx.Game;
+import com.jukusoft.rts.game.Game;
 
 public class AnotherDummyScreen implements IScreen {
 
