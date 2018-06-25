@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.jukusoft.rts.core.Game;
-import com.jukusoft.rts.core.i18n.Translator;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.version.Version;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
@@ -18,8 +17,6 @@ import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.utils.SkinFactory;
 import com.teamunify.i18n.I;
-import org.xnap.commons.i18n.I18n;
-import org.xnap.commons.i18n.I18nFactory;
 
 public class MainMenuScreen implements IScreen {
 
@@ -85,8 +82,12 @@ public class MainMenuScreen implements IScreen {
         stage.addActor(screenBG);
         stage.addActor(shipBG);
 
+        buttons = new TextButton[10];
+
         //create buttons
         TextButton newGameBtn = new TextButton(I.tr("New Game"), this.skin);
+        stage.addActor(newGameBtn);
+        buttons[0] = newGameBtn;
 
         //get client version
         Version version = Version.getInstance();

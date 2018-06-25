@@ -25,7 +25,6 @@ public class DesktopLauncher {
         initI18N();
 
         //set language
-        //I.setLanguage(new Locale("en", "US"));
         I.setLanguage("en");
 
         //https://github.com/awkay/easy-i18n/wiki/Getting-Started
