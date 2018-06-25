@@ -81,7 +81,8 @@ public class MainMenuScreen implements IScreen {
         stage.addActor(screenBG);
         stage.addActor(shipBG);
 
-        //...
+        //create buttons
+        TextButton newGameBtn = new TextButton("", this.skin);
 
         //get client version
         Version version = Version.getInstance();
