@@ -24,11 +24,11 @@ A new game based on the idea of cultures, anno ® and the settlers 3 ® (prototy
 ## German explantation
 
 ```text
-Wer wartet auch noch sehnsüchtig auf einen 3. Teil der Cultures Serie (Cultures 3), einen neuen Anno Teil oder ein [Die Siedler 8](https://www.gamestar.de/artikel/die-siedler-8-wird-zu-champions-of-anteria-und-komplett-anders,3271329.html)?\
-Ich selbst bin ein großer Fan dieser Spiele und habe lange auf einen Nachfolger gewartet.\
+Wer wartet auch noch sehnsüchtig auf einen 3. Teil der Cultures Serie (Cultures 3), einen neuen Anno Teil oder ein [Die Siedler 8](https://www.gamestar.de/artikel/die-siedler-8-wird-zu-champions-of-anteria-und-komplett-anders,3271329.html)?
+Ich selbst bin ein großer Fan dieser Spiele und habe lange auf einen Nachfolger gewartet.
 
 Mit [Unknown Horizons](http://unknown-horizons.org/) (ehemals "Free Anno") gab es zwar eine kostenlose Open Source Version, aber diese hat qualitativ den ursprünglichen Spielen nicht mal ansatzweise das Wasser reichen können.
-Jetzt habe ich begonnen ein eigenes kleines Aufbau- & RTS-Spiel zu starten, welches auf diesem Genre anknüpft.\
+Jetzt habe ich begonnen ein eigenes kleines Aufbau- & RTS-Spiel zu starten, welches an diesem Genre anknüpft.
 Seid gespannt!
 ```
 
