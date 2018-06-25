@@ -12,6 +12,7 @@
 	<modules>
 		<module>core</module>
 		<module>desktop</module>
+		<module>gui</module>
 	</modules>
 
 	<properties>

@@ -26,9 +26,17 @@
 	</scm>
 
 	<dependencies>
+		<!-- core -->
 		<dependency>
 			<groupId>com.jukusoft</groupId>
 			<artifactId>ship-rts-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- gui -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>ship-rts-gui</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
