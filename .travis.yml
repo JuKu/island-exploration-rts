@@ -25,7 +25,7 @@ script:
   - mvn cobertura:cobertura
 #  - bash <(curl -s https://codecov.io/bash) --t ${CODEDOV_TOKEN}
   - chmod -R 777 data/i18n
-  - extract.sh
+  - ./extract.sh
   - curl -X POST https://api.poeditor.com/v2/projects/upload -F api_token="${POEDITOR_API_TOKEN}" -F id="192697" -F updating="terms_definitions" -F language="en" -F file=@"data/i18n/messages.pot"
 
 after_success:
