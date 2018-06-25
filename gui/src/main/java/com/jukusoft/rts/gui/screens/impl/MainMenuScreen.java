@@ -1,16 +1,21 @@
 package com.jukusoft.rts.gui.screens.impl;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
+import com.jukusoft.rts.core.utils.RandomUtils;
 import com.jukusoft.rts.core.version.Version;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.screens.IScreen;
@@ -29,6 +34,7 @@ public class MainMenuScreen implements IScreen {
 
     protected static final String BG_PATH = "data/misc/wallpaper/ocean/Ocean_large.png";
     protected static final String SHIP_PATH = "data/misc/wallpaper/pirateship/edited/ship_scaled.png";
+    protected static final String SOUND_PATH = "data/sound/menu_selection_click/menu_selection_click_16bit.wav";
 
     //images
     protected Image screenBG = null;
@@ -36,6 +42,9 @@ public class MainMenuScreen implements IScreen {
 
     //label
     protected Label versionLabel = null;
+
+    //sounds
+    protected Sound hoverSound = null;
 
     protected TextButton[] buttons;
 
@@ -69,6 +78,7 @@ public class MainMenuScreen implements IScreen {
         //load texures
         assetManager.load(BG_PATH, Texture.class);
         assetManager.load(SHIP_PATH, Texture.class);
+        assetManager.load(SOUND_PATH, Sound.class);
 
         assetManager.finishLoading();
 
@@ -81,6 +91,8 @@ public class MainMenuScreen implements IScreen {
         //add widgets to stage
         stage.addActor(screenBG);
         stage.addActor(shipBG);
+
+        this.hoverSound = assetManager.get(SOUND_PATH, Sound.class);
 
         buttons = new TextButton[10];
 
@@ -109,6 +121,21 @@ public class MainMenuScreen implements IScreen {
         stage.addActor(quitBtn);
         buttons[5] = quitBtn;
 
+        //add hover sound
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i] != null) {
+                buttons[i].addListener(new ClickListener() {
+                    @Override
+                    public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                        super.enter(event, x, y, pointer, fromActor);
+
+                        //play sound
+                        hoverSound.play(1f, 1f, 0f);
+                    }
+                });
+            }
+        }
+
         //get client version
         Version version = Version.getInstance();
 
@@ -129,6 +156,7 @@ public class MainMenuScreen implements IScreen {
     public void onPause(Game game) {
         assetManager.unload(BG_PATH);
         assetManager.unload(SHIP_PATH);
+        assetManager.unload(SOUND_PATH);
 
         labelColor.dispose();
     }

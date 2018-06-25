@@ -40,3 +40,8 @@ Thank you very much!
   - https://opengameart.org/content/grass-and-water-tiles
   - https://opengameart.org/content/worldmapoverworld-tileset
   - https://opengameart.org/art-search-advanced?field_art_tags_tid=sea
+  - https://opengameart.org/content/blackmoor-tides-epic-pirate-battle-theme
+  - https://opengameart.org/content/anchors-aweigh
+  - https://opengameart.org/content/pirates-libertaires
+  - https://opengameart.org/content/rpg-battle-theme-the-last-encounter-0 (battles)
+  - https://opengameart.org/content/woodland-fantasy
