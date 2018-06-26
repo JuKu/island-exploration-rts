@@ -1,0 +1,18 @@
+{
+	"entities": [
+		{
+			"id": 1,
+			"template": "gaia/flora_tree",
+			"player": 0,
+			"pos_x": 100,
+			"pos_y": 100
+		},
+		{
+			"id": 2,
+			"template": "gaia/flora_tree",
+			"player": 0,
+			"pos_x": 200,
+			"pos_y": 100
+		}
+	]
+}

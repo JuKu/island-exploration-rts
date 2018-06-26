@@ -9,5 +9,7 @@
 			"path": "music/TownTheme.mp3",
 			"tag": "GAME_START"
 		}
-	]
+	],
+	"map_size": "small",
+	"player_count": 2
 }
