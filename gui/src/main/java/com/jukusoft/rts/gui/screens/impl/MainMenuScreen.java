@@ -139,6 +139,8 @@ public class MainMenuScreen implements IScreen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
 
+                LocalLogger.print(I.tr("Start new game selected."));
+
                 Platform.runOnUIThread(() -> System.exit(0));
             }
         });
