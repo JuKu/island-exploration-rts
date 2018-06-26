@@ -1,6 +1,8 @@
 package com.jukusoft.rts.core.mods;
 
+import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.utils.FileUtils;
+import com.teamunify.i18n.I;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -20,6 +22,8 @@ public class ModLoader {
         if (!new File(modPath + "mod.json").exists()) {
             throw new FileNotFoundException("Couldnt found mod.json! path: " + modPath + "mod.json");
         }
+
+        LocalLogger.print(I.trf("load mod.json: {0}", modPath + "mod.json"));
 
         String content = FileUtils.readFile(modPath + "mod.json", StandardCharsets.UTF_8);
         JSONObject json = new JSONObject(content);

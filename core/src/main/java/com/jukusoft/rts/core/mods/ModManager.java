@@ -1,6 +1,8 @@
 package com.jukusoft.rts.core.mods;
 
+import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.utils.FileUtils;
+import com.teamunify.i18n.I;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,7 +17,10 @@ public class ModManager {
 
     protected List<Mod> modList = new ArrayList<>();
 
-    public ModManager () {
+    //singleton instance
+    protected static final ModManager instance = new ModManager();
+
+    protected ModManager () {
         //
     }
 
@@ -30,7 +35,11 @@ public class ModManager {
 
         //load all mods
         for (int i = 0; i < array.length(); i++) {
-            Mod mod = ModLoader.loadMod("mods/" + array.getString(i) + "/");
+            final String modName = array.getString(i);
+
+            LocalLogger.print(I.trf("mod found: {0}", modName));
+
+            Mod mod = ModLoader.loadMod("mods/" + modName + "/");
 
             //add mod to list
             this.modList.add(mod);
@@ -39,6 +48,10 @@ public class ModManager {
 
     public List<Mod> listActivatedMods () {
         return this.modList;
+    }
+
+    public static ModManager getInstance () {
+        return instance;
     }
 
 }

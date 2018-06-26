@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
+import com.jukusoft.rts.core.mods.ModManager;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
@@ -18,6 +19,9 @@ import com.jukusoft.rts.gui.screens.Screens;
 import com.jukusoft.rts.gui.screens.impl.DefaultScreenManager;
 import com.jukusoft.rts.gui.screens.impl.MainMenuScreen;
 import com.jukusoft.rts.gui.screens.impl.NewGameScreen;
+
+import java.io.File;
+import java.io.IOException;
 
 public class GameGUI implements ApplicationListener {
 
@@ -51,6 +55,14 @@ public class GameGUI implements ApplicationListener {
 
         //activate screen
         this.screenManager.leaveAllAndEnter(Screens.MAIN_MENU);
+
+        //load mods
+        try {
+            ModManager.getInstance().load(new File("data/mods.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     @Override
