@@ -30,12 +30,11 @@ public class ModManager {
 
         //load all mods
         for (int i = 0; i < array.length(); i++) {
-            this.loadMod("mods/" + array.getString(i) + "/");
-        }
-    }
+            Mod mod = ModLoader.loadMod("mods/" + array.getString(i) + "/");
 
-    protected void loadMod (String modPath) {
-        //
+            //add mod to list
+            this.modList.add(mod);
+        }
     }
 
     public List<Mod> listActivatedMods () {
