@@ -132,7 +132,7 @@
 			</plugin>
 
 			<!-- gettext-commons https://github.com/jgettext/gettext-commons/wiki/Maven-Repository -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>com.googlecode.gettext-commons</groupId>
 				<artifactId>gettext-maven-plugin</artifactId>
 				<version>1.2.4</version>
@@ -151,7 +151,7 @@
 					<targetBundle>com.jukusoft.rts.gui.GameGUI</targetBundle>
 					<outputFormat>properties</outputFormat>
 				</configuration>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 

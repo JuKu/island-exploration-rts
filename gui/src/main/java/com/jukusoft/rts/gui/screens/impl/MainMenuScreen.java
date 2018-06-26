@@ -15,11 +15,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
+import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.core.utils.RandomUtils;
 import com.jukusoft.rts.core.version.Version;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
+import com.jukusoft.rts.gui.screens.Screens;
 import com.jukusoft.rts.gui.utils.SkinFactory;
 import com.teamunify.i18n.I;
 
@@ -98,6 +100,15 @@ public class MainMenuScreen implements IScreen {
 
         //create buttons
         TextButton newGameBtn = new TextButton(I.tr("New Game"), this.skin);
+        newGameBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+
+                //enter new game screen
+                Platform.runOnUIThread(() -> screenManager.leaveAllAndEnter(Screens.NEW_GAME));
+            }
+        });
         stage.addActor(newGameBtn);
         buttons[0] = newGameBtn;
 
@@ -118,6 +129,14 @@ public class MainMenuScreen implements IScreen {
         buttons[4] = creditsBtn;
 
         TextButton quitBtn = new TextButton(I.tr("Quit Game"), this.skin);
+        quitBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+
+                Platform.runOnUIThread(() -> System.exit(0));
+            }
+        });
         stage.addActor(quitBtn);
         buttons[5] = quitBtn;
 
