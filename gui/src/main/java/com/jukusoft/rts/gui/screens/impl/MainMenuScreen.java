@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
+import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.core.utils.RandomUtils;
 import com.jukusoft.rts.core.version.Version;
@@ -49,6 +50,10 @@ public class MainMenuScreen implements IScreen {
     protected Sound hoverSound = null;
 
     protected TextButton[] buttons;
+
+    protected float yOffset = 0;
+    protected float speedY = 10;
+    protected float maxOffset = 10;
 
     @Override
     public void onStart(Game game, ScreenManager<IScreen> screenManager) {
@@ -222,7 +227,13 @@ public class MainMenuScreen implements IScreen {
 
     @Override
     public void update(Game game, ScreenManager<IScreen> screenManager) {
+        if (this.yOffset > maxOffset || this.yOffset < -maxOffset) {
+            this.speedY = -speedY;
+        }
 
+        this.yOffset += this.speedY * GameTime.getInstance().getDelta();
+
+        shipBG.setY(-20 + this.yOffset);
     }
 
     @Override

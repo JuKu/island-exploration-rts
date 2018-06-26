@@ -51,3 +51,6 @@ Thank you very much!
   - https://opengameart.org/content/lively-meadow-victory-fanfare-and-song (winner song)
   - https://opengameart.org/content/enchanted-festival (island, after new game started)
   - https://opengameart.org/content/rpgmusic
+  - https://opengameart.org/content/fishing-bobbles-spritesheet-24x24 (fishing graphics)
+  - https://opengameart.org/content/zrpg-beach (tileset)
+  - https://opengameart.org/content/world-map-tiles (tileset)
