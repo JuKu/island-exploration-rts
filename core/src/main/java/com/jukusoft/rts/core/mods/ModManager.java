@@ -25,6 +25,10 @@ public class ModManager {
     }
 
     public void load (File configFile) throws IOException {
+        if (configFile == null) {
+            throw new NullPointerException("config file cannot be null.");
+        }
+
         if (!configFile.exists()) {
             throw new FileNotFoundException("mods.json file doesnt exists! path: " + configFile.getAbsolutePath());
         }
