@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
-import com.jukusoft.rts.core.mods.ModManager;
+import com.jukusoft.rts.core.mod.ModManager;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;

@@ -1,4 +1,4 @@
-package com.jukusoft.rts.core.mods;
+package com.jukusoft.rts.core.mod;
 
 import org.junit.Test;
 

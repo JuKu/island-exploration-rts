@@ -1,4 +1,4 @@
-package com.jukusoft.rts.core.mods;
+package com.jukusoft.rts.core.mod;
 
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.utils.FileUtils;
