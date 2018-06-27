@@ -49,6 +49,7 @@ public class ModManagerTest {
 
         assertNotNull(manager.listActivatedMods());
         assertEquals(true, !manager.listActivatedMods().isEmpty());
+        assertEquals("base", manager.listActivatedMods().get(0).getName());
     }
 
 }

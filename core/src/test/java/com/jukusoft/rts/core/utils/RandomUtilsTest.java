@@ -37,6 +37,7 @@ public class RandomUtilsTest {
         assertTrue(trues > 50);
     }
 
+    @Test
     public void testGetRandomFloat () {
         assertEquals(true, RandomUtils.getRandomFloat(1f, 2f) >= 1f);
         assertEquals(true, RandomUtils.getRandomFloat(1f, 2f) <= 2f);
