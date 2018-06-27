@@ -52,6 +52,9 @@ public class ModManagerTest {
         assertNotNull(manager.listActivatedMods());
         assertEquals(true, !manager.listActivatedMods().isEmpty());
         assertEquals("base", manager.listActivatedMods().get(0).getName());
+
+        //because only one mod is activated, size should be 1
+        assertEquals(1, manager.listActivatedMods().size());
     }
 
 }
