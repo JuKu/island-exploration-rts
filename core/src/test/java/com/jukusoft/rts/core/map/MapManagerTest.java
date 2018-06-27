@@ -23,6 +23,9 @@ public class MapManagerTest {
 
         //check, if instances are the same
         assertEquals(manager, manager1);
+
+        assertEquals(true, manager.listMaps().isEmpty());
+        assertEquals(0, manager.listMaps().size());
     }
 
 }
