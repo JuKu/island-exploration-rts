@@ -42,8 +42,10 @@ public class ModManagerTest {
         new ModManager().load(new File("not-existent-file.cfg"));
     }
 
-    @Test (expected = FileNotFoundException.class)
+    @Test
     public void testLoad () throws IOException {
+        ModManager.modDir = "../mods/";
+
         ModManager manager = new ModManager();
         manager.load(new File("../data/mods.json"));
 

@@ -15,6 +15,8 @@ import java.util.List;
 
 public class ModManager {
 
+    protected static String modDir = "mods/";
+
     protected List<Mod> modList = new ArrayList<>();
 
     //singleton instance
@@ -43,7 +45,7 @@ public class ModManager {
 
             LocalLogger.print(I.trf("mod found: {0}", modName));
 
-            Mod mod = ModLoader.loadMod("mods/" + modName + "/");
+            Mod mod = ModLoader.loadMod(modDir + modName + "/");
 
             //add mod to list
             this.modList.add(mod);
