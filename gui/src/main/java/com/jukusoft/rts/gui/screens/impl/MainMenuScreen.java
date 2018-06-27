@@ -17,7 +17,6 @@ import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
-import com.jukusoft.rts.core.utils.RandomUtils;
 import com.jukusoft.rts.core.version.Version;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.screens.IScreen;

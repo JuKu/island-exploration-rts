@@ -26,7 +26,7 @@ public class Mod {
         return version;
     }
 
-    public Mod create (JSONObject json) {
+    public static Mod create (JSONObject json) {
         String name = json.getString("name");
         String title = json.getString("title");
         String version = json.getString("version");

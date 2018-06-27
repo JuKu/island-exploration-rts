@@ -11,5 +11,14 @@
 		}
 	],
 	"map_size": "small",
-	"player_count": 2
+	"player_count": 2,
+	"players": [
+		{
+			"playerID": 1,
+			"start_position": {
+				"x": 200,
+				"y": 200
+			}
+		}
+	]
 }
