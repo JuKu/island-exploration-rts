@@ -19,6 +19,10 @@ public class ModLoader {
     }
 
     public static Mod loadMod (String modPath) throws IOException {
+        if (!modPath.endsWith("/")) {
+            modPath = modPath + "/";
+        }
+
         //first, check if mod directory exists
         if (!new File(modPath).exists()) {
             throw new FileNotFoundException("mod directory doesnt exists: " + new File(modPath).getAbsolutePath());
