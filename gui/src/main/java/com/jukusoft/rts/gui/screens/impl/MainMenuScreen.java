@@ -169,7 +169,7 @@ public class MainMenuScreen implements IScreen {
 
         //set label background color
         labelColor = new Pixmap((int) this.versionLabel.getWidth(), (int) this.versionLabel.getHeight(), Pixmap.Format.RGBA8888);
-        labelColor.setColor(Color.valueOf("#36581a"));
+        labelColor.setColor(Color.valueOf("#001f3f"));//#36581a, #0074D9, #001f3f
         labelColor.fill();
         this.versionLabel.getStyle().background = new Image(new Texture(labelColor)).getDrawable();
         stage.addActor(versionLabel);
