@@ -8,4 +8,9 @@ public class RTSGame implements Game {
         //
     }
 
+    @Override
+    public void createNewGame(String mapName) {
+        //
+    }
+
 }
