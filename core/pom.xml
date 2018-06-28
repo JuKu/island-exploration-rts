@@ -26,6 +26,13 @@
 			<version>${json.version}</version>
 		</dependency>
 
+		<!-- artemis-odb -->
+		<dependency>
+			<groupId>net.onedaybeard.artemis</groupId>
+			<artifactId>artemis-odb</artifactId>
+			<version>${artemis.version}</version>
+		</dependency>
+
 		<!-- High Performance Primitive Collections for Java, https://github.com/carrotsearch/hppc -->
 		<dependency>
 			<groupId>com.carrotsearch</groupId>
@@ -52,6 +59,24 @@
 							<includes>
 								<includes>**/*Test*</includes>
 							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- optimize artemis-odb -->
+			<plugin>
+				<groupId>net.onedaybeard.artemis</groupId>
+				<artifactId>artemis-odb-maven-plugin</artifactId>
+				<version>${artemis.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>artemis</goal>
+						</goals>
+						<configuration>
+							<optimizeEntitySystems>${artemis.optimizeSystems}</optimizeEntitySystems>
+							<enableArtemisPlugin>${artemis.enableArtemisPlugin}</enableArtemisPlugin>
 						</configuration>
 					</execution>
 				</executions>

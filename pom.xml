@@ -46,6 +46,11 @@
 		<!-- org.json -->
 		<json.version>20180130</json.version>
 
+		<!-- artemis-odb entity-component-system -->
+		<artemis.version>2.1.0</artemis.version>
+		<artemis.optimizeSystems>true</artemis.optimizeSystems>
+		<artemis.enableArtemisPlugin>true</artemis.enableArtemisPlugin>
+
 		<jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
 
 		<!-- Sonar properties-->
