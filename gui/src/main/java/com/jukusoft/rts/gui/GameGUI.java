@@ -17,10 +17,7 @@ import com.jukusoft.rts.gui.fps.FPSManager;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.screens.Screens;
-import com.jukusoft.rts.gui.screens.impl.DefaultScreenManager;
-import com.jukusoft.rts.gui.screens.impl.LoadGameScreen;
-import com.jukusoft.rts.gui.screens.impl.MainMenuScreen;
-import com.jukusoft.rts.gui.screens.impl.NewGameScreen;
+import com.jukusoft.rts.gui.screens.impl.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +52,7 @@ public class GameGUI implements ApplicationListener {
         this.screenManager.addScreen(Screens.MAIN_MENU, new MainMenuScreen());
         this.screenManager.addScreen(Screens.NEW_GAME, new NewGameScreen());
         this.screenManager.addScreen(Screens.LOAD_GAME, new LoadGameScreen());
+        this.screenManager.addScreen(Screens.PLAY_GAME, new GameScreen());
 
         //activate screen
         this.screenManager.leaveAllAndEnter(Screens.MAIN_MENU);
