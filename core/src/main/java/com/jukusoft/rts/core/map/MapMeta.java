@@ -11,12 +11,13 @@ import java.nio.charset.StandardCharsets;
 public class MapMeta {
 
     protected String dir = "";
+    protected String name = "";
 
     public MapMeta() {
         //
     }
 
-    public void load (String mapDir) throws IOException {
+    public void load (String mapDir, String name) throws IOException {
         if (mapDir == null) {
             throw new NullPointerException("path cannot be null.");
         }
@@ -41,6 +42,12 @@ public class MapMeta {
 
         //store map directory path
         this.dir = mapDir;
+
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

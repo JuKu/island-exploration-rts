@@ -32,7 +32,7 @@ public class MapManager {
 
             //try to load map
             MapMeta map = new MapMeta();
-            map.load(mapsDir + directory + "/");
+            map.load(mapsDir + directory + "/", directory);
 
             this.maps.add(map);
         }
