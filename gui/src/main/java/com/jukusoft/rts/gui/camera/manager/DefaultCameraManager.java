@@ -60,7 +60,7 @@ public class DefaultCameraManager implements CameraManager {
             //check, if custom camera exists
             if (this.customCameras[i] != null) {
                 //increase counter
-                i++;
+                cameras++;
             }
         }
 
