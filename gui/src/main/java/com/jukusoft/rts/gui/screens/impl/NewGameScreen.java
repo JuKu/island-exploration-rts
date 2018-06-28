@@ -12,7 +12,6 @@ import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.MapManager;
 import com.jukusoft.rts.core.map.MapMeta;
-import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.screens.Screens;
@@ -27,12 +26,12 @@ public class NewGameScreen extends GUIScreen {
 
     @Override
     protected void start(Game game, ScreenManager<IScreen> screenManager) {
-
+        //
     }
 
     @Override
     protected void stop(Game game) {
-
+        //
     }
 
     @Override
@@ -49,14 +48,14 @@ public class NewGameScreen extends GUIScreen {
             blob[i] = maps.get(i).getName();
         }
 
-        final SelectBox<Object> sb = new SelectBox<Object>(skin);
+        final SelectBox<Object> sb = new SelectBox<>(skin);
         sb.setItems(blob);
 
         //add change listener
         sb.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println(((Label) sb.getSelected()).getText());
+                LocalLogger.print(((Label) sb.getSelected()).getText().toString());
             }
         });
 

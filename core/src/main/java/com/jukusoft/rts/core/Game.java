@@ -7,6 +7,6 @@ import java.io.IOException;
 
 public interface Game {
 
-    public void createNewGame (MapMeta map) throws FileNotFoundException, IOException;
+    public void createNewGame (MapMeta map) throws IOException;
 
 }
