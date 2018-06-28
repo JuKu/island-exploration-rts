@@ -53,6 +53,13 @@ You can easely build the game from source, using maven:
 mvn clean install
 ```
 
+## HowTo: Convert many BMP images to PNG format with batch
+
+This [ImageMackick](http://www.imagemagick.org/script/index.php) command line (on windows) converts all .bmp images in directory to .png images:
+```bash
+mogrify -format png *.bmp
+```
+
 ## Translations
 
 https://poeditor.com/join/project/wSLmNkicot

@@ -1,9 +1,11 @@
 package com.jukusoft.rts.gui.screens.impl;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.gui.camera.CameraHelper;
+import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.teamunify.i18n.I;
@@ -18,16 +20,25 @@ public class GameScreen implements IScreen {
     //game time (for simulation)
     protected GameTime time = GameTime.getInstance();
 
+    //water renderer
+    protected WaterRenderer waterRenderer = null;
+
+    //sprite batch
+    protected SpriteBatch batch = null;
+
+    //flag, if screen was loaded
     protected AtomicBoolean loaded = new AtomicBoolean(false);
 
     @Override
     public void onStart(Game game, ScreenManager<IScreen> screenManager) {
-        //
+        // create sprite batcher
+        this.batch = new SpriteBatch();
     }
 
     @Override
     public void onStop(Game game) {
-        //
+        this.batch.dispose();
+        this.batch = null;
     }
 
     @Override
@@ -35,6 +46,10 @@ public class GameScreen implements IScreen {
         if (!loaded.get()) {
             throw new IllegalStateException("game screen wasnt loaded yet, call loadAsync() first.");
         }
+
+        //load water renderer
+        this.waterRenderer = new WaterRenderer();
+        this.waterRenderer.load("data/misc/water/water.atlas", "water", 200f);
     }
 
     @Override
@@ -61,7 +76,22 @@ public class GameScreen implements IScreen {
 
     @Override
     public void draw(Game game) {
-        //
+        //beginn rendering process
+        this.batch.begin();
+
+        //set camera projection matrix
+        this.batch.setProjectionMatrix(this.camera.getCombined());
+
+        //render game
+        this.renderGame(game, this.camera, this.batch);
+
+        //flush rendering
+        this.batch.end();
+    }
+
+    protected void renderGame (Game game, CameraHelper camera, SpriteBatch batch) {
+        //render water
+        this.waterRenderer.draw(game, this.time, camera, batch);
     }
 
     /**

@@ -1,8 +1,11 @@
 package com.jukusoft.rts.gui.assetmanager;
 
+import com.badlogic.gdx.assets.AssetDescriptor;
+import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.AbsoluteFileHandleResolver;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.jukusoft.rts.core.logging.LocalLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,11 @@ public class GameAssetManager {
     protected GameAssetManager () {
         //create new asset manager
         this.assetManager = new AssetManager(new AbsoluteFileHandleResolver());
+
+        this.assetManager.setErrorListener((asset, throwable) -> {
+            LocalLogger.print("Couldnt load asset: " + asset.fileName + " (type: " + asset.type.getSimpleName() + ")");
+            LocalLogger.printStacktrace(throwable);
+        });
     }
 
     public static GameAssetManager getInstance() {

@@ -27,9 +27,6 @@ public class WaterRenderer implements IRenderer {
     //name of current animation
     protected String animationName = "";
 
-    //instance of game
-    protected Game game = null;
-
     //instance of asset manager
     protected GameAssetManager assetManager = null;
 
@@ -72,9 +69,7 @@ public class WaterRenderer implements IRenderer {
     protected static final int PAGE_WIDTH = 256;
     protected static final int PAGE_HEIGHT = 256;
 
-    public WaterRenderer (Game game) {
-        this.game = game;
-
+    public WaterRenderer () {
         //get asset manager
         this.assetManager = GameAssetManager.getInstance();
     }
