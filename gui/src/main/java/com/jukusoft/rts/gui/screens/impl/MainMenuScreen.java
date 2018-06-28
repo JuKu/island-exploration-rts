@@ -228,6 +228,7 @@ public class MainMenuScreen implements IScreen {
 
     @Override
     public void update(Game game, ScreenManager<IScreen> screenManager) {
+        //move ship up and down (like waves)
         if (this.yOffset > maxOffset || this.yOffset < -maxOffset) {
             this.speedY = -speedY;
         }

@@ -4,45 +4,32 @@ import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 
-public class NewGameScreen implements IScreen {
+public class NewGameScreen extends GUIScreen {
+
+    //https://stackoverflow.com/questions/17298864/drop-down-in-libgdx
 
     @Override
-    public void onStart(Game game, ScreenManager<IScreen> screenManager) {
-        //https://stackoverflow.com/questions/17298864/drop-down-in-libgdx
-    }
-
-    @Override
-    public void onStop(Game game) {
-
-    }
-
-    @Override
-    public void onResume(Game game) {
+    protected void start(Game game, ScreenManager<IScreen> screenManager) {
 
     }
 
     @Override
-    public void onPause(Game game) {
+    protected void stop(Game game) {
 
     }
 
     @Override
-    public void onResize(int width, int height) {
+    protected void resume(Game game) {
 
     }
 
     @Override
-    public boolean processInput(Game game, ScreenManager<IScreen> screenManager) {
-        return false;
-    }
-
-    @Override
-    public void update(Game game, ScreenManager<IScreen> screenManager) {
+    protected void pause(Game game) {
 
     }
 
     @Override
-    public void draw(Game game) {
+    protected void resize(int width, int height) {
 
     }
 
