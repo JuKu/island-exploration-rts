@@ -73,7 +73,6 @@
 					<execution>
 						<goals>
 							<goal>artemis</goal>
-							<goal>matrix</goal>
 						</goals>
 						<configuration>
 							<optimizeEntitySystems>${artemis.optimizeSystems}</optimizeEntitySystems>
