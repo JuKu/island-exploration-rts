@@ -23,6 +23,13 @@ public class MouseUtils {
         return (y + camera.getY()) * 1 / camera.getZoom();
     }
 
+    /**
+    * get mouse position with camera
+     *
+     * @deprecated since version 0.0.1
+     *
+     * @return vector of mouse position
+    */
     @Deprecated
     public static Vector3 getMousePositionWithCamera(Camera camera) {
         tmpVector.set(Gdx.input.getX(), Gdx.input.getY(), 0);
