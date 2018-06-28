@@ -50,4 +50,7 @@ public class MapMeta {
         return name;
     }
 
+    public String getDir() {
+        return dir;
+    }
 }

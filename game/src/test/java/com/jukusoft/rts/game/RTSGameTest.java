@@ -1,6 +1,7 @@
 package com.jukusoft.rts.game;
 
 import com.jukusoft.rts.core.Game;
+import com.jukusoft.rts.core.map.MapMeta;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -16,13 +17,21 @@ public class RTSGameTest {
     @Test (expected = FileNotFoundException.class)
     public void testCreateNewGameWithNotExistentMap () throws IOException {
         Game game = new RTSGame();
-        game.createNewGame("../maps/not-existent-map");
+
+        MapMeta map = new MapMeta();
+        map.load("../maps/not-existent-map", "not-existent-map");
+
+        game.createNewGame(map);
     }
 
     @Test
     public void testCreateNewGame () throws IOException {
         Game game = new RTSGame();
-        game.createNewGame("../maps/example");
+
+        MapMeta map = new MapMeta();
+        map.load("../maps/example", "example");
+
+        game.createNewGame(map);
     }
 
 }
