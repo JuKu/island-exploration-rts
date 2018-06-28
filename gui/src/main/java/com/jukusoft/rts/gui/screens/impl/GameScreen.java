@@ -59,6 +59,10 @@ public class GameScreen implements IScreen {
     @Override
     public void onPause(Game game) {
         this.camera = null;
+
+        //dispose water renderer
+        this.waterRenderer.dispose();
+        this.waterRenderer = null;
     }
 
     @Override

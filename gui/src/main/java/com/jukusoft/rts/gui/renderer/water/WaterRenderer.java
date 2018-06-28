@@ -21,6 +21,8 @@ import java.util.Map;
  */
 public class WaterRenderer implements IRenderer {
 
+    protected static final String TAG_WATER = "Water";
+
     //path to current atlas file
     protected String currentAtlasPath = "";
 
@@ -103,9 +105,9 @@ public class WaterRenderer implements IRenderer {
         assetManager.load(atlasFile, TextureAtlas.class);
 
         if (assetManager.isLoaded(atlasFile)) {
-            Gdx.app.log("Water", "water animation is already loaded.");
+            Gdx.app.log(TAG_WATER, "water animation is already loaded.");
         } else {
-            Gdx.app.log("Water", "water animation isnt loaded yet.");
+            Gdx.app.log(TAG_WATER, "water animation isnt loaded yet.");
         }
 
         //finish loading
@@ -119,7 +121,7 @@ public class WaterRenderer implements IRenderer {
             assetManager.unload(this.currentAtlasPath);
 
             //log message
-            Gdx.app.debug("Water", "unload old atlas file: " + this.currentAtlasPath);
+            Gdx.app.debug(TAG_WATER, "unload old atlas file: " + this.currentAtlasPath);
         }
 
         //set new current file
@@ -195,7 +197,7 @@ public class WaterRenderer implements IRenderer {
 
         if (this.waterAnimation == null) {
             //get animation
-            this.waterAnimation = new Animation<TextureRegion>(this.frameDuration / 1000, this.textureAtlas.findRegions(this.animationName), Animation.PlayMode.LOOP);
+            this.waterAnimation = new Animation<>(this.frameDuration / 1000, this.textureAtlas.findRegions(this.animationName), Animation.PlayMode.LOOP);
 
             //generate pages
             this.generatePages(this.waterAnimation);
@@ -237,8 +239,8 @@ public class WaterRenderer implements IRenderer {
             float startX = w1 * this.frame.getRegionWidth() - (camera.getX() % this.frame.getRegionWidth());
             float startY = h1 * this.frame.getRegionHeight() - (camera.getY() % this.frame.getRegionHeight());
 
-            int requiredPagesX = (int) (camera.getViewportWidth() / this.currentPage.getWidth() + 1);
-            int requiredPagesY = (int) (camera.getViewportHeight() / this.currentPage.getHeight() + 1);
+            int requiredPagesX = (camera.getViewportWidth() / this.currentPage.getWidth() + 1);
+            int requiredPagesY = (camera.getViewportHeight() / this.currentPage.getHeight() + 1);
 
             float offsetX = 0;
             float offsetY = 0;
@@ -259,6 +261,14 @@ public class WaterRenderer implements IRenderer {
                 offsetY = 0;
             }
         }
+    }
+
+    @Override
+    public void dispose() {
+        this.disposeAllPages();
+
+        //unload texture atlas
+        assetManager.unload(this.currentAtlasPath);
     }
 
     protected void generatePages (Animation<TextureRegion> animation) {

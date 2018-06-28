@@ -20,4 +20,6 @@ public interface IRenderer {
      */
     public void draw(Game game, GameTime time, CameraHelper camera, SpriteBatch batch);
 
+    public void dispose ();
+
 }
