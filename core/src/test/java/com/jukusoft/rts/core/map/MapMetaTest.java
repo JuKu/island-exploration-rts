@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static org.junit.Assert.assertEquals;
+
 public class MapMetaTest {
 
     @Test
@@ -36,6 +38,8 @@ public class MapMetaTest {
     public void testLoad () throws IOException {
         MapMeta map = new MapMeta();
         map.load("../maps/example/", "test");
+
+        assertEquals("test", map.getName());
     }
 
 }

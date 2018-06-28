@@ -2,6 +2,7 @@ package com.jukusoft.rts.core.map;
 
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
@@ -12,6 +13,11 @@ public class MapManagerTest {
     @Test
     public void testConstructor () throws IOException {
         new MapManager("../maps/");
+    }
+
+    @Test (expected = FileNotFoundException.class)
+    public void testConstructorNotExistentDir () throws IOException {
+        new MapManager("../not-existent-directory/");
     }
 
     @Test
