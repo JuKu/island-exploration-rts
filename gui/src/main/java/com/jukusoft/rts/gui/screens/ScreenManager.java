@@ -53,6 +53,15 @@ public interface ScreenManager<T extends IScreen> {
     public T getScreenByName(final String name);
 
     /**
+     * get screen by name
+     *
+     * @param name unique name of screen
+     *
+     * @return instance of screen
+     */
+    public <K extends IScreen> K getScreenByName(final String name, Class<K> cls);
+
+    /**
      * list all initialized screens
      *
      * @return list with all registered streams

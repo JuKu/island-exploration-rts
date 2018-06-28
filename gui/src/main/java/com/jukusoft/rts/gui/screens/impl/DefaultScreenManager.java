@@ -165,6 +165,11 @@ public class DefaultScreenManager implements ScreenManager<IScreen> {
     }
 
     @Override
+    public <K extends IScreen> K getScreenByName(String name, Class<K> cls) {
+        return cls.cast(this.getScreenByName(name));
+    }
+
+    @Override
     public ObjectArrayList<IScreen> listScreens() {
         return this.cachedScreenList;
     }

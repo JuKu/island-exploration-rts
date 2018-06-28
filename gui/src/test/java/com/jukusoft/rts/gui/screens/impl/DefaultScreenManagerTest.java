@@ -88,6 +88,7 @@ public class DefaultScreenManagerTest extends GameUnitTest {
         manager.addScreen("dummy_screen", new DummyScreen());
 
         assertNotNull(manager.getScreenByName("dummy_screen"));
+        assertNotNull(manager.getScreenByName("dummy_screen", DummyScreen.class));
 
         manager.removeScreen("dummy_screen");
 
