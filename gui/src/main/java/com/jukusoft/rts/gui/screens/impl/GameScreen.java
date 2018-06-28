@@ -3,6 +3,7 @@ package com.jukusoft.rts.gui.screens.impl;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
+import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
@@ -19,6 +20,9 @@ public class GameScreen implements IScreen {
 
     //game time (for simulation)
     protected GameTime time = GameTime.getInstance();
+
+    //game speed
+    protected GameSpeed speed = GameSpeed.getInstance();
 
     //water renderer
     protected WaterRenderer waterRenderer = null;
@@ -72,6 +76,9 @@ public class GameScreen implements IScreen {
     public void update(Game game, ScreenManager<IScreen> screenManager) {
         //update main camera
         this.camera.update(time);
+
+        //update game
+        this.updateGame(game, time.getDelta() * speed.getSpeed(), screenManager);
     }
 
     @Override
@@ -87,6 +94,11 @@ public class GameScreen implements IScreen {
 
         //flush rendering
         this.batch.end();
+    }
+
+    protected void updateGame (Game game, float delta, ScreenManager<IScreen> screenManager) {
+        //update water
+        this.waterRenderer.update(game, this.time);
     }
 
     protected void renderGame (Game game, CameraHelper camera, SpriteBatch batch) {

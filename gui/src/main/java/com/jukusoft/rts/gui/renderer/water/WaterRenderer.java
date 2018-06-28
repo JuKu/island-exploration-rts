@@ -111,7 +111,7 @@ public class WaterRenderer implements IRenderer {
         //finish loading
         assetManager.finishLoading(atlasFile);
 
-        Gdx.app.debug("WaterRenderer", "atlas file loaded: " + atlasFile);
+        Gdx.app.log("WaterRenderer", "atlas file loaded: " + atlasFile);
 
         //unload old atlas file (for reference counting)
         if (!this.currentAtlasPath.isEmpty() && !this.currentAtlasPath.equals(atlasFile)) {
