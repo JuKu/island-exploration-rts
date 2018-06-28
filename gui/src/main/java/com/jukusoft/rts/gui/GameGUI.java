@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.MapManager;
-import com.jukusoft.rts.core.map.MapMeta;
 import com.jukusoft.rts.core.mod.ModManager;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;

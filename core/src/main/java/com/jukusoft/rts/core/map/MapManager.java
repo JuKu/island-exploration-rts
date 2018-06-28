@@ -23,14 +23,10 @@ public class MapManager {
             throw new FileNotFoundException("maps directory doesnt exists: " + mapsDir);
         }
 
-        //load available maps
-        String[] directories = dir.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
-            }
-        });
+        //list all directories in directory maps/
+        String[] directories = dir.list((current, name) -> new File(current, name).isDirectory());
 
+        //load all available maps
         for (String directory : directories) {
             LocalLogger.print(I.trf("map found: {0}", directory));
 
