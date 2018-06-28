@@ -53,7 +53,7 @@ public class GameScreen implements IScreen {
 
         //load water renderer
         this.waterRenderer = new WaterRenderer();
-        this.waterRenderer.load("data/misc/water/water.atlas", "water", 200f);
+        this.waterRenderer.load("data/misc/water/water.atlas", "water", 1000f / 8);
     }
 
     @Override
