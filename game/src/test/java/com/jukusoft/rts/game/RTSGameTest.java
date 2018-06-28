@@ -19,7 +19,7 @@ public class RTSGameTest {
         Game game = new RTSGame();
 
         MapMeta map = new MapMeta();
-        map.load("../maps/not-existent-map", "not-existent-map");
+        map.load("../maps/not-existent-map/", "not-existent-map");
 
         game.createNewGame(map);
     }
@@ -29,7 +29,7 @@ public class RTSGameTest {
         Game game = new RTSGame();
 
         MapMeta map = new MapMeta();
-        map.load("../maps/example", "example");
+        map.load("../maps/example/", "example");
 
         game.createNewGame(map);
     }
