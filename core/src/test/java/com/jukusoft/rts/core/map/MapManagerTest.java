@@ -2,18 +2,22 @@ package com.jukusoft.rts.core.map;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class MapManagerTest {
 
     @Test
-    public void testConstructor () {
-        new MapManager();
+    public void testConstructor () throws IOException {
+        new MapManager("../maps/");
     }
 
     @Test
-    public void testGetInstance () {
+    public void testGetInstance () throws IOException {
+        MapManager.init("../maps/");
+
         MapManager manager = MapManager.getInstance();
         MapManager manager1 = MapManager.getInstance();
 
@@ -24,8 +28,8 @@ public class MapManagerTest {
         //check, if instances are the same
         assertEquals(manager, manager1);
 
-        assertEquals(true, manager.listMaps().isEmpty());
-        assertEquals(0, manager.listMaps().size());
+        assertEquals(false, manager.listFreeMaps().isEmpty());
+        assertEquals(true, manager.listFreeMaps().size() > 0);
     }
 
 }

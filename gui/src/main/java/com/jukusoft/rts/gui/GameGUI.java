@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
+import com.jukusoft.rts.core.map.MapManager;
+import com.jukusoft.rts.core.map.MapMeta;
 import com.jukusoft.rts.core.mod.ModManager;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
@@ -55,6 +57,14 @@ public class GameGUI implements ApplicationListener {
 
         //activate screen
         this.screenManager.leaveAllAndEnter(Screens.MAIN_MENU);
+
+        //initialize map manager
+        try {
+            MapManager.init("maps/");
+        } catch (IOException e) {
+            LocalLogger.printStacktrace(e);
+            System.exit(1);
+        }
 
         //load mods
         try {
