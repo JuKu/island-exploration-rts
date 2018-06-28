@@ -24,6 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class CameraHelper implements ModificationFinishedListener {
 
+    protected static final String CLASS_CANNOT_BE_NULL = "class cannot be null.";
+
     //libGDX 2D orthographic camera
     protected OrthographicCamera camera = null;
 
@@ -373,8 +375,6 @@ public class CameraHelper implements ModificationFinishedListener {
         this.x = x;
         this.y = y;
 
-        //this.update(GameTime.getInstance());
-
         //sync camera helper position to libGDX camera
         this.syncPosToCamera();
 
@@ -571,7 +571,7 @@ public class CameraHelper implements ModificationFinishedListener {
     public Vector3 getMousePosition() {
         this.tmpScreenVector.set(Gdx.input.getX(), Gdx.input.getY(), 0);
 
-        this.tmpScreenVector = camera.unproject(this.tmpScreenVector/*, viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(), viewport.getScreenHeight()*/);//viewport.unproject(this.tmpScreenVector);
+        this.tmpScreenVector = camera.unproject(this.tmpScreenVector);
 
         if (!Gdx.graphics.isFullscreen() && Gdx.app.getType() == Application.ApplicationType.Desktop && PlatformUtils.isWindows()) {
             this.tmpScreenVector.y = MouseUtils.correctDecoredMousePositionY(this.tmpScreenVector.y);
@@ -587,7 +587,6 @@ public class CameraHelper implements ModificationFinishedListener {
         }
 
         this.deactivateMod(cls);
-        // this.activeModifications.remove(mod);
     }
 
     public <T extends CameraModification> void registerMod(T mod, Class<T> cls) {
@@ -596,7 +595,7 @@ public class CameraHelper implements ModificationFinishedListener {
         }
 
         if (cls == null) {
-            throw new NullPointerException("class cannot be null.");
+            throw new NullPointerException(CLASS_CANNOT_BE_NULL);
         }
 
         this.cameraModificationMap.put(cls, mod);
@@ -604,7 +603,7 @@ public class CameraHelper implements ModificationFinishedListener {
 
     public <T extends CameraModification> void removeMod(Class<T> cls) {
         if (cls == null) {
-            throw new NullPointerException("class cannot be null.");
+            throw new NullPointerException(CLASS_CANNOT_BE_NULL);
         }
 
         CameraModification mod = this.cameraModificationMap.get(cls);
@@ -618,7 +617,7 @@ public class CameraHelper implements ModificationFinishedListener {
 
     public <T extends CameraModification> T getMod(Class<T> cls) {
         if (cls == null) {
-            throw new NullPointerException("class cannot be null.");
+            throw new NullPointerException(CLASS_CANNOT_BE_NULL);
         }
 
         CameraModification mod = this.cameraModificationMap.get(cls);
@@ -632,7 +631,7 @@ public class CameraHelper implements ModificationFinishedListener {
 
     public <T extends CameraModification> void activateMod(Class<T> cls) {
         if (cls == null) {
-            throw new NullPointerException("class cannot be null.");
+            throw new NullPointerException(CLASS_CANNOT_BE_NULL);
         }
 
         CameraModification mod = this.cameraModificationMap.get(cls);
@@ -648,7 +647,7 @@ public class CameraHelper implements ModificationFinishedListener {
 
     public <T extends CameraModification> void deactivateMod(Class<T> cls) {
         if (cls == null) {
-            throw new NullPointerException("class cannot be null.");
+            throw new NullPointerException(CLASS_CANNOT_BE_NULL);
         }
 
         CameraModification mod = this.cameraModificationMap.get(cls);
