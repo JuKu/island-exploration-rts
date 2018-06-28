@@ -41,15 +41,10 @@ public class Shake1CameraModification implements CameraModification {
             float x = (random.nextFloat() - 0.5f) * 2 * currentPower;
             float y = (random.nextFloat() - 0.5f) * 2 * currentPower;
             camera.translate(-x, -y);
-
-            // Increase the elapsed time by the delta provided.
-            // elapsed = time.getTime() - startTime;
             elapsed += delta;
         } else {
             // shake was finsihed
             this.isActive = false;
-            // listener.onModificationFinished(this,
-            // Shake1CameraModification.class);
         }
     }
 
