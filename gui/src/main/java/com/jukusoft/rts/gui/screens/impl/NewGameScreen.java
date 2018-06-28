@@ -89,6 +89,8 @@ public class NewGameScreen extends GUIScreen {
                     System.exit(1);
                 }
 
+                LocalLogger.print("enter load game state.");
+
                 //go to next screen
                 screenManager.leaveAllAndEnter(Screens.LOAD_GAME);
             }
