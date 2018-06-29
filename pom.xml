@@ -51,6 +51,9 @@
 		<artemis.optimizeSystems>true</artemis.optimizeSystems>
 		<artemis.enableArtemisPlugin>true</artemis.enableArtemisPlugin>
 
+		<!-- artemis-odb-eeel event listening -->
+		<artemis-odb-eeel.version>1.2</artemis-odb-eeel.version>
+
 		<jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
 
 		<!-- Sonar properties-->

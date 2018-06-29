@@ -33,6 +33,13 @@
 			<version>${artemis.version}</version>
 		</dependency>
 
+		<!-- artemis-odb-eeel event listening -->
+		<dependency>
+			<groupId>net.fbridault.eeel</groupId>
+			<artifactId>artemis-odb-eeel</artifactId>
+			<version>${artemis-odb-eeel.version}</version>
+		</dependency>
+
 		<!-- High Performance Primitive Collections for Java, https://github.com/carrotsearch/hppc -->
 		<dependency>
 			<groupId>com.carrotsearch</groupId>
