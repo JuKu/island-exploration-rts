@@ -56,6 +56,9 @@ public class RTSGame implements Game {
 
         //set flag
         this.newGame = false;
+
+        //TODO: remove this line later
+        this.map = new MapMeta();
     }
 
     @Override
