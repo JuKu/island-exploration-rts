@@ -69,7 +69,7 @@ public class GameGUI implements ApplicationListener {
         try {
             ModManager.getInstance().load(new File("data/mods.json"));
         } catch (IOException e) {
-            e.printStackTrace();
+            LocalLogger.printStacktrace(e);
             System.exit(1);
         }
     }
