@@ -19,6 +19,10 @@ public class MapMeta {
     protected int height = 0;
     String minimap = "";
 
+    //camera start position
+    protected float cameraStartX = 0;
+    protected float cameraStartY = 0;
+
     public MapMeta() {
         //
     }
@@ -52,6 +56,11 @@ public class MapMeta {
         this.height = json.getInt("height");
         this.minimap = json.getString("minimap");
 
+        //get camera start position
+        JSONObject camera = json.getJSONObject("camera");
+        this.cameraStartX = camera.getInt("x");
+        this.cameraStartY = camera.getInt("y");
+
         //store map directory path
         this.dir = mapDir;
 
@@ -82,4 +91,12 @@ public class MapMeta {
         return minimap;
     }
 
+    public float getCameraStartX() {
+        return cameraStartX;
+    }
+
+    public float getCameraStartY() {
+        return cameraStartY;
+    }
+    
 }

@@ -30,6 +30,9 @@ public class RTSGame implements Game {
     //current map
     protected MapMeta map = null;
 
+    //flag, if it is a new game or a loaded game
+    protected boolean newGame = false;
+
     public RTSGame () {
         //
     }
@@ -42,11 +45,17 @@ public class RTSGame implements Game {
         }
 
         this.map = map;
+
+        //set flag
+        this.newGame = true;
     }
 
     @Override
     public void loadGame(String saveName) {
         //TODO: add code here
+
+        //set flag
+        this.newGame = false;
     }
 
     @Override
@@ -95,6 +104,18 @@ public class RTSGame implements Game {
     @Override
     public MapMeta getMapMeta() {
         return this.map;
+    }
+
+    @Override
+    public float[] getCameraStartPosition() {
+        if (this.newGame) {
+            //use camera start position from map
+            return new float[] {
+                   map.getCameraStartX(), map.getCameraStartY()
+            };
+        }
+
+        return new float[]{ 100, 100 };
     }
 
 }

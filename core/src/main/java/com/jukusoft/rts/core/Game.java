@@ -45,4 +45,9 @@ public interface Game {
     */
     public MapMeta getMapMeta ();
 
+    /**
+    * get start position of camera
+    */
+    public float[] getCameraStartPosition ();
+
 }

@@ -20,5 +20,10 @@
 				"y": 200
 			}
 		}
-	]
+	],
+	"comment": "start position of camera",
+	"camera": {
+		"x": 100,
+		"y": 100
+	}
 }
