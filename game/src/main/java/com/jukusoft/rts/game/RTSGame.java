@@ -27,6 +27,9 @@ public class RTSGame implements Game {
     //game speed
     protected GameSpeed speed = GameSpeed.getInstance();
 
+    //current map
+    protected MapMeta map = null;
+
     public RTSGame () {
         //
     }
@@ -37,11 +40,13 @@ public class RTSGame implements Game {
         if (!new File(map.getDir()).exists()) {
             throw new FileNotFoundException(I.trf("Couldnt find map: {0}", map.getDir()));
         }
+
+        this.map = map;
     }
 
     @Override
     public void loadGame(String saveName) {
-
+        //TODO: add code here
     }
 
     @Override
@@ -85,6 +90,11 @@ public class RTSGame implements Game {
     @Override
     public void reset() {
 
+    }
+
+    @Override
+    public MapMeta getMapMeta() {
+        return this.map;
     }
 
 }

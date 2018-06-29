@@ -38,4 +38,11 @@ public interface Game {
 
     public void reset ();
 
+    /**
+    * get meta information about current map
+     *
+     * @return map meta data
+    */
+    public MapMeta getMapMeta ();
+
 }

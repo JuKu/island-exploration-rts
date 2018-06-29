@@ -13,6 +13,12 @@ public class MapMeta {
     protected String dir = "";
     protected String name = "";
 
+    //meta data
+    protected String title = "";
+    protected int width = 0;
+    protected int height = 0;
+    String minimap = "";
+
     public MapMeta() {
         //
     }
@@ -40,6 +46,12 @@ public class MapMeta {
         String content = FileUtils.readFile(mapPath, StandardCharsets.UTF_8);
         JSONObject json = new JSONObject(content);
 
+        //parse json
+        this.title = json.getString("title");
+        this.width = json.getInt("width");
+        this.height = json.getInt("height");
+        this.minimap = json.getString("minimap");
+
         //store map directory path
         this.dir = mapDir;
 
@@ -53,4 +65,21 @@ public class MapMeta {
     public String getDir() {
         return dir;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getMinimap() {
+        return minimap;
+    }
+
 }

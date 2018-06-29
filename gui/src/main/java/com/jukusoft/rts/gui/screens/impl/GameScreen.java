@@ -3,6 +3,7 @@ package com.jukusoft.rts.gui.screens.impl;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
+import com.jukusoft.rts.core.map.MapMeta;
 import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.gui.camera.CameraHelper;
@@ -125,6 +126,12 @@ public class GameScreen implements IScreen {
 
         //create new camera
         this.camera = new CameraHelper(1280, 720);
+
+        //get current map
+        MapMeta map = game.getMapMeta();
+
+        //set camera bounds
+        this.camera.setBounds(0, map.getWidth(), 0, map.getHeight());
 
         //load map and so on
         game.loadAsync();
