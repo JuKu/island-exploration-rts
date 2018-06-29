@@ -37,6 +37,9 @@ public class TiledMapParser {
     //list with tilesets
     protected List<Tileset> tilesets = new ArrayList<>();
 
+    //list with all layers
+    protected List<TiledLayer> layers = new ArrayList<>();
+
     public TiledMapParser () {
         //
     }
@@ -45,6 +48,10 @@ public class TiledMapParser {
     * load .tmx map
     */
     public void load (File xmlFile) throws IOException {
+        //reset tiled map parser first
+        this.tilesets.clear();
+        this.layers.clear();
+
         if (xmlFile == null) {
             throw new NullPointerException("tiled map file cannot be null.");
         }
@@ -182,6 +189,64 @@ public class TiledMapParser {
                 this.tilesets.add(tileset);
             }
         }
+
+        //get all layers
+        List<Node> layers = doc.selectNodes("/map/layer");
+
+        for (Node layerNode : layers) {
+            Element layerElement = (Element) layerNode;
+
+            //get name
+            String name = layerElement.attributeValue("name");
+
+            if (name == null) {
+                throw new TiledParserException("layer name is not set.");
+            }
+
+            if (name.isEmpty()) {
+                throw new TiledParserException("layer name cannot be empty.");
+            }
+
+            //get layer width & height in tiles
+            int layerWidth = Integer.parseInt(layerElement.attributeValue("width"));
+            int layerHeight = Integer.parseInt(layerElement.attributeValue("height"));
+
+            //create new layer
+            TiledLayer layer = new TiledLayer(name, layerWidth, layerHeight);
+
+            //parse layer, get data element
+            Node dataNode = layerNode.selectSingleNode("data");
+
+            if (dataNode == null) {
+                throw new TiledParserException("One of layer elements doesnt have a data node.");
+            }
+
+            Element dataElement = (Element) dataNode;
+
+            //check encoding
+            String encoding = dataElement.attributeValue("encoding");
+
+            if (encoding == null) {
+                //no encoding set, plain XML
+                this.parsePlainXMLLayer(dataElement, layer);
+            } else if (encoding.equals("base64")) {
+                //base64 encoding
+                this.parseBase64Layer(dataElement, layer);
+            } else {
+                throw new UnsupportedOperationException("TMX layer encoding '" + encoding + "' isnt supported yet, use plain xml or 'base64' instead.");
+            }
+
+            //add layer to list
+            this.layers.add(layer);
+        }
+    }
+
+    protected void parsePlainXMLLayer (Element dataElement, TiledLayer layer) {
+        //
+    }
+
+    protected void parseBase64Layer (Element dataElement, TiledLayer layer) {
+        //
     }
 
     protected Document parse(File file) throws DocumentException {
@@ -224,6 +289,10 @@ public class TiledMapParser {
 
     public List<Tileset> listTilesets() {
         return tilesets;
+    }
+
+    public List<TiledLayer> listLayers() {
+        return layers;
     }
 
 }
