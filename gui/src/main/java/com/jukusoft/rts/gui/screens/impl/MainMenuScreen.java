@@ -40,6 +40,7 @@ public class MainMenuScreen implements IScreen {
 
     //images
     protected Image screenBG = null;
+    protected Image screenBG2 = null;
     protected Image shipBG = null;
 
     //label
@@ -53,6 +54,9 @@ public class MainMenuScreen implements IScreen {
     protected float yOffset = 0;
     protected float speedY = 10;
     protected float maxOffset = 10;
+
+    //how fast is background image scrolling?
+    protected float skyBoxSpeed = 100;
 
     @Override
     public void onStart(Game game, ScreenManager<IScreen> screenManager) {
@@ -90,12 +94,14 @@ public class MainMenuScreen implements IScreen {
 
         Texture bgTexture = assetManager.get(BG_PATH, Texture.class);
         this.screenBG = new Image(bgTexture);
+        this.screenBG2 = new Image(bgTexture);
 
         Texture logoTexture = assetManager.get(SHIP_PATH, Texture.class);
         this.shipBG = new Image(logoTexture);
 
         //add widgets to stage
         stage.addActor(screenBG);
+        stage.addActor(screenBG2);
         stage.addActor(shipBG);
 
         this.hoverSound = assetManager.get(SOUND_PATH, Sound.class);
@@ -198,6 +204,12 @@ public class MainMenuScreen implements IScreen {
 
         //make the background fill the screen
         screenBG.invalidate();
+        screenBG2.invalidate();
+
+        screenBG.setX(0);
+        screenBG.setY(0);
+        screenBG2.setX(screenBG.getWidth());
+        screenBG2.setY(0);
 
         shipBG.setX(0);
         shipBG.setY(0);
@@ -232,6 +244,15 @@ public class MainMenuScreen implements IScreen {
         if (this.yOffset > maxOffset || this.yOffset < -maxOffset) {
             this.speedY = -speedY;
         }
+
+        float skyBoxXPos = this.screenBG.getX() - GameTime.getInstance().getDelta() * this.skyBoxSpeed;
+
+        if (skyBoxXPos < -this.screenBG.getWidth()) {
+            skyBoxXPos += this.screenBG.getWidth();
+        }
+
+        this.screenBG.setX(skyBoxXPos);
+        this.screenBG2.setX(skyBoxXPos + this.screenBG2.getWidth());
 
         this.yOffset += this.speedY * GameTime.getInstance().getDelta();
 
