@@ -23,7 +23,7 @@
 	],
 	"comment": "start position of camera",
 	"camera": {
-		"x": 0,
-		"y": 0
+		"x": 100,
+		"y": 100
 	}
 }
