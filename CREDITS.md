@@ -59,3 +59,4 @@ Thank you very much!
   - https://opengameart.org/content/medieval-building-tiles (house)
   - https://opengameart.org/content/lpc-terrain-repack (terrain pack)
   - https://opengameart.org/content/lpc-plant-repack (lpc plants)
+  - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles (tilesets)
