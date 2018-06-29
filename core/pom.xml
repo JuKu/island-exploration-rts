@@ -26,6 +26,13 @@
 			<version>${json.version}</version>
 		</dependency>
 
+		<!-- dom4j xml parser -->
+		<dependency>
+			<groupId>org.dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>${dom4j.version}</version>
+		</dependency>
+
 		<!-- artemis-odb -->
 		<dependency>
 			<groupId>net.onedaybeard.artemis</groupId>
