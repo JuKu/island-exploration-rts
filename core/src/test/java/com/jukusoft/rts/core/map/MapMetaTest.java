@@ -40,6 +40,12 @@ public class MapMetaTest {
         map.load("../maps/example/", "test");
 
         assertEquals("test", map.getName());
+        assertEquals("Example", map.getTitle());
+        assertEquals(true, map.getWidth() > 0);
+        assertEquals(true, map.getHeight() > 0);
+        assertEquals(false, map.getMinimap().isEmpty());
+        assertEquals(true, map.getCameraStartX() > 0);
+        assertEquals(true, map.getCameraStartY() > 0);
     }
 
 }
