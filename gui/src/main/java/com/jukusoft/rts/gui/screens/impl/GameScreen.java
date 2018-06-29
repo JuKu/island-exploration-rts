@@ -33,10 +33,14 @@ public class GameScreen implements IScreen {
     //flag, if screen was loaded
     protected AtomicBoolean loaded = new AtomicBoolean(false);
 
+    protected Game game = null;
+
     @Override
     public void onStart(Game game, ScreenManager<IScreen> screenManager) {
         // create sprite batcher
         this.batch = new SpriteBatch();
+
+        this.game = game;
     }
 
     @Override
@@ -103,6 +107,9 @@ public class GameScreen implements IScreen {
     protected void updateGame (Game game, float delta, ScreenManager<IScreen> screenManager) {
         //update water
         this.waterRenderer.update(game, this.time);
+
+        //update game entities
+        game.update();
     }
 
     protected void renderGame (Game game, CameraHelper camera, SpriteBatch batch) {
@@ -118,6 +125,9 @@ public class GameScreen implements IScreen {
 
         //create new camera
         this.camera = new CameraHelper(1280, 720);
+
+        //load map and so on
+        game.loadAsync();
 
         //load resources asynchronous
 

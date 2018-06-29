@@ -83,6 +83,7 @@ public class NewGameScreen extends GUIScreen {
 
                 //start game
                 try {
+                    game.reset();
                     game.createNewGame(selectedMap);
                 } catch (IOException e) {
                     LocalLogger.printStacktrace(e);
