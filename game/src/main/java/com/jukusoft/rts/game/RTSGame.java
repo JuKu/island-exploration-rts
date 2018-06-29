@@ -93,7 +93,7 @@ public class RTSGame implements Game {
 
     @Override
     public World getSeaWorld() {
-        return null;
+        return this.seaWorld;
     }
 
     @Override
