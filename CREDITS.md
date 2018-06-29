@@ -56,3 +56,6 @@ Thank you very much!
   - https://opengameart.org/content/fishing-bobbles-spritesheet-24x24 (fishing graphics)
   - https://opengameart.org/content/zrpg-beach (tileset)
   - https://opengameart.org/content/world-map-tiles (tileset)
+  - https://opengameart.org/content/medieval-building-tiles (house)
+  - https://opengameart.org/content/lpc-terrain-repack (terrain pack)
+  - https://opengameart.org/content/lpc-plant-repack (lpc plants)
