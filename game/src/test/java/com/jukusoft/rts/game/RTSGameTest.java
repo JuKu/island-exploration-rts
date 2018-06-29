@@ -8,6 +8,9 @@ import org.mockito.Mockito;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 public class RTSGameTest {
 
     @Test
@@ -33,6 +36,32 @@ public class RTSGameTest {
         map.load("../maps/example/", "example");
 
         game.createNewGame(map);
+        game.loadAsync();
+        game.update();
+
+        assertNotNull(game.getMapMeta());
+        assertNotNull(game.getSeaWorld());
+        assertEquals(true, game.getCameraStartPosition()[0] > 0);
+        assertEquals(true, game.getCameraStartPosition()[1] > 0);
+    }
+
+    @Test
+    public void testLoadGame () throws IOException {
+        Game game = new RTSGame();
+        game.loadGame("test");
+    }
+
+    @Test
+    public void testResetGame () throws IOException {
+        Game game = new RTSGame();
+        game.reset();
+
+        MapMeta map = new MapMeta();
+        map.load("../maps/example/", "example");
+
+        game.createNewGame(map);
+
+        game.reset();
     }
 
 }
