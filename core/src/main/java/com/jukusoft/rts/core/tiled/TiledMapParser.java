@@ -3,6 +3,7 @@ package com.jukusoft.rts.core.tiled;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
 import com.jukusoft.rts.core.tiled.tileset.Tileset;
+import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -124,6 +125,11 @@ public class TiledMapParser {
                 String source = element.attributeValue("source");
 
                 //TODO: add code here
+
+                TsxTileset tileset = new TsxTileset(firstTileID, source);
+
+                //add tileset to list
+                this.tilesets.add(tileset);
             } else {
                 //its a normal texture tileset
 
@@ -214,6 +220,10 @@ public class TiledMapParser {
 
     public int getHeightInPixels () {
         return this.height * this.tileHeight;
+    }
+
+    public List<Tileset> listTilesets() {
+        return tilesets;
     }
 
 }

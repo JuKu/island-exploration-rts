@@ -41,6 +41,8 @@ public class TiledMapParserTest {
 
         assertEquals(640, parser.getWidthInPixels());
         assertEquals(640, parser.getHeightInPixels());
+
+        assertEquals(2, parser.listTilesets().size());
     }
 
 }
