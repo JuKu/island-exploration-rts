@@ -133,6 +133,11 @@ public class GameScreen implements IScreen {
         //set camera bounds
         this.camera.setBounds(0, map.getWidth(), 0, map.getHeight());
 
+        float[] cameraPos = game.getCameraStartPosition();
+
+        //set camera start position
+        this.camera.forcePos(cameraPos[0], cameraPos[1]);
+
         //load map and so on
         game.loadAsync();
 
