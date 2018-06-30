@@ -1,6 +1,7 @@
 package com.jukusoft.rts.core.map.island;
 
 import com.carrotsearch.hppc.ObjectArrayList;
+import com.jukusoft.rts.core.tiled.Orientation;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -30,7 +31,11 @@ public class IslandParser {
             int height = islandJson.getInt("height");
             String tmxFile = islandJson.getString("tmx_file");
 
-            Island island = new Island(id, title, x, y, width, height, mapDir + tmxFile);
+            String orientationString = islandJson.getString("orientation");
+
+            Orientation orientation = orientationString.equals("isometric") ? Orientation.ISOMETRIC : Orientation.ORTHOGONAL;
+
+            Island island = new Island(id, title, x, y, width, height, orientation, mapDir + tmxFile);
             list.add(island);
         }
 

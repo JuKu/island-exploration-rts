@@ -1,5 +1,6 @@
 package com.jukusoft.rts.core.map.island;
 
+import com.jukusoft.rts.core.tiled.Orientation;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,42 +9,42 @@ public class IslandTest {
 
     @Test
     public void testConstructor () {
-        new Island(1, "test", 0, 0, 200, 200, "island.tmx");
+        new Island(1, "test", 0, 0, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testConstructor1 () {
-        new Island(-1, "test", 0, 0, 200, 200, "island.tmx");
+        new Island(-1, "test", 0, 0, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
     @Test (expected = NullPointerException.class)
     public void testConstructor2 () {
-        new Island(1, null, 0, 0, 200, 200, "island.tmx");
+        new Island(1, null, 0, 0, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testConstructor3 () {
-        new Island(1, "", 0, 0, 200, 200, "island.tmx");
+        new Island(1, "", 0, 0, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testConstructor4 () {
-        new Island(1, "test", -1, 0, 200, 200, "island.tmx");
+        new Island(1, "test", -1, 0, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void testConstructor5 () {
-        new Island(1, "test", 0, -1, 200, 200, "island.tmx");
+        new Island(1, "test", 0, -1, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
     @Test
     public void testNullPositionConstructor () {
-        new Island(1, "test", 0, 0, 200, 200, "island.tmx");
+        new Island(1, "test", 0, 0, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
     @Test
     public void testGetter () {
-        Island island = new Island(1, "test", 10, 20, 30, 40, "island.tmx");
+        Island island = new Island(1, "test", 10, 20, 30, 40, Orientation.ORTHOGONAL, "island.tmx");
 
         assertEquals(1, island.getId());
         assertEquals("test", island.getTitle());

@@ -1,5 +1,7 @@
 package com.jukusoft.rts.core.map.island;
 
+import com.jukusoft.rts.core.tiled.Orientation;
+
 public class Island {
 
     protected final int id;
@@ -14,8 +16,9 @@ public class Island {
     protected int height = 0;
 
     protected String tmxPath = "";
+    protected Orientation orientation = null;
 
-    public Island (int id, String title, float x, float y, int width, int height, String tmxPath) {
+    public Island(int id, String title, float x, float y, int width, int height, Orientation orientation, String tmxPath) {
         if (id < 0) {
             throw new IllegalArgumentException("id has to be >= 0.");
         }
@@ -42,6 +45,7 @@ public class Island {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.orientation = this.orientation;
         this.tmxPath = tmxPath;
     }
 
@@ -67,6 +71,10 @@ public class Island {
 
     public int getHeight() {
         return height;
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
     }
 
     public String getTmxPath() {

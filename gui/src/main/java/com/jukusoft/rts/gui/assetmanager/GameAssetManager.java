@@ -191,4 +191,8 @@ public class GameAssetManager {
         return this.assetManager.getProgress();
     }
 
+    public AssetManager getLibGDXAssetManager () {
+        return this.assetManager;
+    }
+
 }

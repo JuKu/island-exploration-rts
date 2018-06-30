@@ -1,10 +1,8 @@
 package com.jukusoft.rts.gui.screens.impl;
 
-import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.utils.Platform;
-import com.jukusoft.rts.gui.renderer.island.IslandRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.screens.Screens;
@@ -52,7 +50,7 @@ public class LoadGameScreen extends GUIScreen {
 
     @Override
     public void update(Game game, ScreenManager<IScreen> screenManager) {
-        if (gameLoaded.get()) {
+        if (gameLoaded.get() && assetManager.getProgress() >= 1f) {
             LocalLogger.print("map loaded successfully.");
 
             LocalLogger.print(I.tr("game loaded successfully."));

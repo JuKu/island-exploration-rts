@@ -1,10 +1,13 @@
 package com.jukusoft.rts.gui.screens.impl;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.resolvers.AbsoluteFileHandleResolver;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -69,6 +72,9 @@ public class MainMenuScreen implements IScreen {
         this.skin = SkinFactory.createSkin(jsonFile);
 
         this.skin2 = SkinFactory.createSkin("./data/misc/skins/libgdx/uiskin.json");
+
+        //add tiled map loader
+        this.assetManager.getLibGDXAssetManager().setLoader(TiledMap.class, new TmxMapLoader(new AbsoluteFileHandleResolver()));
 
         //create UI stage
         this.stage = new Stage();

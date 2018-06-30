@@ -1,6 +1,7 @@
 package com.jukusoft.rts.gui.screens.impl;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
@@ -9,6 +10,8 @@ import com.jukusoft.rts.core.map.island.Island;
 import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
+import com.jukusoft.rts.core.utils.Utils;
+import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 import com.jukusoft.rts.gui.renderer.island.IslandRenderer;
 import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
@@ -17,9 +20,13 @@ import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.screens.Screens;
 import com.teamunify.i18n.I;
 
+import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GameScreen implements IScreen {
+
+    //asset manager
+    protected GameAssetManager assetManager = GameAssetManager.getInstance();
 
     //camera
     protected CameraHelper camera = null;
@@ -174,6 +181,19 @@ public class GameScreen implements IScreen {
             return;
         }
 
+        //load tiled map resources
+        for (int i = 0; i < game.listIslands().size(); i++) {
+            Island island = game.listIslands().get(i);
+
+            //get tmx path
+            String tmxPath = island.getTmxPath();
+
+            LocalLogger.print("load TiledMap: " + tmxPath);
+
+            //load tiled map
+            assetManager.load(tmxPath, TiledMap.class);
+        }
+
         //load resources asynchronous
 
         //set flag
@@ -186,6 +206,8 @@ public class GameScreen implements IScreen {
      * @see GameScreen
     */
     public void loadSync () {
+        Utils.printSection("GameScreen::loadSync()");
+
         if (!this.loaded.get()) {
             throw new IllegalStateException("call loadAsync() before calling loadSync()!");
         }
@@ -196,6 +218,7 @@ public class GameScreen implements IScreen {
         for (int i = 0; i < islands.size(); i++) {
             Island island = islands.get(i);
             LocalLogger.print("init island renderer for island '" + island.getTitle() + "'...");
+            LocalLogger.print("tmx path: " + island.getTmxPath());
 
             //add new renderer
             IslandRenderer renderer = new IslandRenderer(island);
