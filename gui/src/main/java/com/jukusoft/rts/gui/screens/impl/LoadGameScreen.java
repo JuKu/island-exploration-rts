@@ -1,8 +1,10 @@
 package com.jukusoft.rts.gui.screens.impl;
 
+import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.utils.Platform;
+import com.jukusoft.rts.gui.renderer.island.IslandRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.screens.Screens;
@@ -53,12 +55,18 @@ public class LoadGameScreen extends GUIScreen {
         if (gameLoaded.get()) {
             LocalLogger.print("map loaded successfully.");
 
-            //TODO: init island renderer
-
             LocalLogger.print(I.tr("game loaded successfully."));
 
+            final GameScreen gameScreen = this.screenManager.getScreenByName(Screens.PLAY_GAME, GameScreen.class);
+
             //enter game screen
-            Platform.runOnUIThread(() -> this.screenManager.leaveAllAndEnter(Screens.PLAY_GAME));
+            Platform.runOnUIThread(() -> {
+                //load synchronous in main thread, because some gpu resources can only loaded in main thread
+                gameScreen.loadSync();
+
+                //go to game screen
+                this.screenManager.leaveAllAndEnter(Screens.PLAY_GAME);
+            });
         }
     }
 

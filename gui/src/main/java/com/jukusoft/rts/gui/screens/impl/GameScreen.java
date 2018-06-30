@@ -1,6 +1,7 @@
 package com.jukusoft.rts.gui.screens.impl;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.MapMeta;
@@ -8,6 +9,7 @@ import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.gui.camera.CameraHelper;
+import com.jukusoft.rts.gui.renderer.island.IslandRenderer;
 import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
@@ -35,6 +37,9 @@ public class GameScreen implements IScreen {
 
     //flag, if screen was loaded
     protected AtomicBoolean loaded = new AtomicBoolean(false);
+
+    //list with island renderer which renders islands on map
+    protected ObjectArrayList<IslandRenderer> islandRendererList = new ObjectArrayList<>();
 
     protected Game game = null;
     protected ScreenManager<IScreen> screenManager = null;
@@ -113,6 +118,11 @@ public class GameScreen implements IScreen {
         //update water
         this.waterRenderer.update(game, this.time);
 
+        //update islands
+        this.islandRendererList.iterator().forEachRemaining(renderer -> {
+            renderer.value.update(game, this.time);
+        });
+
         //update game entities
         game.update();
     }
@@ -120,6 +130,13 @@ public class GameScreen implements IScreen {
     protected void renderGame (Game game, CameraHelper camera, SpriteBatch batch) {
         //render water
         this.waterRenderer.draw(game, this.time, camera, batch);
+
+        //render islands
+        this.islandRendererList.iterator().forEachRemaining(renderer -> {
+            renderer.value.draw(game, this.time, camera, batch);
+        });
+
+        //TODO: render entities
     }
 
     /**
@@ -160,6 +177,19 @@ public class GameScreen implements IScreen {
 
         //set flag
         this.loaded.set(true);
+    }
+
+    /**
+    * load synchronous, after loadAsync(), in main thread
+     *
+     * @see GameScreen
+    */
+    public void loadSync () {
+        if (!this.loaded.get()) {
+            throw new IllegalStateException("call loadAsync() before calling loadSync()!");
+        }
+
+        //init island renderer
     }
 
 }
