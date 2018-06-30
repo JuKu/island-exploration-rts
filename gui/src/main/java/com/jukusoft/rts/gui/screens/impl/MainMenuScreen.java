@@ -209,6 +209,12 @@ public class MainMenuScreen implements IScreen {
         assetManager.unload(SHIP_PATH);
         assetManager.unload(SOUND_PATH);
 
+        //stop music
+        this.music.stop();
+        this.music = null;
+
+        assetManager.unload(MUSIC_PATH);
+
         labelColor.dispose();
     }
 
