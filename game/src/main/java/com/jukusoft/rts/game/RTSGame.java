@@ -2,16 +2,23 @@ package com.jukusoft.rts.game;
 
 import com.artemis.World;
 import com.artemis.WorldConfiguration;
+import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.MapMeta;
+import com.jukusoft.rts.core.map.island.Island;
+import com.jukusoft.rts.core.map.island.IslandParser;
 import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.time.GameTime;
+import com.jukusoft.rts.core.utils.FileUtils;
+import com.jukusoft.rts.core.utils.Utils;
 import com.teamunify.i18n.I;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class RTSGame implements Game {
 
@@ -32,6 +39,9 @@ public class RTSGame implements Game {
 
     //flag, if it is a new game or a loaded game
     protected boolean newGame = false;
+
+    //list with all islands on map
+    protected ObjectArrayList<Island> islands = null;
 
     public RTSGame () {
         //
@@ -62,8 +72,35 @@ public class RTSGame implements Game {
     }
 
     @Override
-    public void loadAsync() {
+    public void loadAsync() throws Exception {
         LocalLogger.print("load RTSGame");
+
+        //get map path
+        String mapPath = this.map.getDir();
+
+        LocalLogger.print("load map directory: " + mapPath);
+
+        //load islands
+        Utils.printSection("islands");
+
+        String islandsJsonPath = mapPath + "islands.json";
+        LocalLogger.print("islands json path: " + islandsJsonPath);
+
+        if (!new File(islandsJsonPath).exists()) {
+            LocalLogger.warn("islands json file doesnt exists: " + islandsJsonPath);
+            throw new IllegalStateException("islands json file doesnt exists");
+        }
+
+        String content = FileUtils.readFile(islandsJsonPath, StandardCharsets.UTF_8);
+        JSONObject islandsJSON = new JSONObject(content);
+
+        //parse islands
+        IslandParser islandParser = new IslandParser();
+        this.islands = islandParser.parseIslands(islandsJSON, this.map.getDir());
+
+        LocalLogger.print("islands loaded successfully.");
+
+        Utils.printSection("entities");
 
         WorldConfiguration config = new WorldConfiguration();
         WorldConfiguration seaConfig = new WorldConfiguration();

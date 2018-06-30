@@ -6,10 +6,12 @@ import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.MapMeta;
 import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.time.GameTime;
+import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
+import com.jukusoft.rts.gui.screens.Screens;
 import com.teamunify.i18n.I;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -35,6 +37,7 @@ public class GameScreen implements IScreen {
     protected AtomicBoolean loaded = new AtomicBoolean(false);
 
     protected Game game = null;
+    protected ScreenManager<IScreen> screenManager = null;
 
     @Override
     public void onStart(Game game, ScreenManager<IScreen> screenManager) {
@@ -42,6 +45,7 @@ public class GameScreen implements IScreen {
         this.batch = new SpriteBatch();
 
         this.game = game;
+        this.screenManager = screenManager;
     }
 
     @Override
@@ -139,7 +143,18 @@ public class GameScreen implements IScreen {
         this.camera.forcePos(cameraPos[0], cameraPos[1]);
 
         //load map and so on
-        game.loadAsync();
+        try {
+            game.loadAsync();
+        } catch (Exception e) {
+            LocalLogger.printStacktrace(e);
+
+            LocalLogger.warn("exception while loading map, go back to main menu.");
+
+            //loading failed, go back to main menu
+            Platform.runOnUIThread(() -> screenManager.leaveAllAndEnter(Screens.MAIN_MENU));
+
+            return;
+        }
 
         //load resources asynchronous
 

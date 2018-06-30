@@ -24,7 +24,7 @@ public interface Game {
     /**
     * load game resources, like maps, entities and so on asynchronous on extra thread
     */
-    public void loadAsync ();
+    public void loadAsync () throws Exception;
 
     /**
     * update game logik

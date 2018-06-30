@@ -10,8 +10,12 @@ public class IslandParser {
         //
     }
 
-    public ObjectArrayList<Island> parseIslands (JSONObject json) {
+    public ObjectArrayList<Island> parseIslands (JSONObject json, String mapDir) {
         ObjectArrayList<Island> list = new ObjectArrayList<>();
+
+        if (!mapDir.endsWith("/")) {
+            throw new IllegalArgumentException("map directory path has to end with '/'!");
+        }
 
         JSONArray islandsArray = json.getJSONArray("islands");
 
@@ -26,7 +30,7 @@ public class IslandParser {
             int height = islandJson.getInt("height");
             String tmxFile = islandJson.getString("tmx_file");
 
-            Island island = new Island(id, title, x, y, width, height, tmxFile);
+            Island island = new Island(id, title, x, y, width, height, mapDir + tmxFile);
             list.add(island);
         }
 

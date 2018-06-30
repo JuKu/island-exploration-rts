@@ -8,11 +8,11 @@
 			"x": 100,
 			"y": 100,
 
-			"comment": "width and height of island in pixels",
+			"comment1": "width and height of island in pixels",
 			"width": 640,
 			"height": 640,
 
-			"tmx_file": "island1.tmx"
+			"tmx_file": "islands/island1.tmx"
 		},
 		{
 			"island_id": 2,
@@ -21,11 +21,11 @@
 			"x": 800,
 			"y": 100,
 
-			"comment": "width and height of island in pixels",
+			"comment2": "width and height of island in pixels",
 			"width": 640,
 			"height": 640,
 
-			"tmx_file": "island1.tmx"
+			"tmx_file": "islands/island1.tmx"
 		}
 	]
 }

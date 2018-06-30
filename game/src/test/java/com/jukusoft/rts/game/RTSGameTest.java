@@ -29,7 +29,7 @@ public class RTSGameTest {
     }
 
     @Test
-    public void testCreateNewGame () throws IOException {
+    public void testCreateNewGame () throws Exception {
         Game game = new RTSGame();
 
         MapMeta map = new MapMeta();
@@ -46,7 +46,7 @@ public class RTSGameTest {
     }
 
     @Test
-    public void testLoadGame () throws IOException {
+    public void testLoadGame () throws Exception {
         Game game = new RTSGame();
         game.loadGame("test");
 

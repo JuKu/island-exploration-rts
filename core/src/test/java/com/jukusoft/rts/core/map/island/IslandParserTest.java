@@ -41,7 +41,7 @@ public class IslandParserTest {
         json.put("islands", array);
 
         IslandParser parser = new IslandParser();
-        ObjectArrayList<Island> list = parser.parseIslands(json);
+        ObjectArrayList<Island> list = parser.parseIslands(json, "maps/example/");
 
         assertEquals(10, list.size());
 
@@ -55,7 +55,7 @@ public class IslandParserTest {
             assertEquals(20 + i, island.getY(), 0.0001f);
             assertEquals(30 + i, island.getWidth());
             assertEquals(40 + i, island.getHeight());
-            assertEquals("island_" + i + ".tmx", island.getTmxPath());
+            assertEquals("maps/example/island_" + i + ".tmx", island.getTmxPath());
         }
     }
 
