@@ -51,6 +51,10 @@ public class LoadGameScreen extends GUIScreen {
     @Override
     public void update(Game game, ScreenManager<IScreen> screenManager) {
         if (gameLoaded.get()) {
+            LocalLogger.print("map loaded successfully.");
+
+            //TODO: init island renderer
+
             LocalLogger.print(I.tr("game loaded successfully."));
 
             //enter game screen

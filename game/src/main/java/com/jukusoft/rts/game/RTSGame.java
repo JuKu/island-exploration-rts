@@ -138,7 +138,7 @@ public class RTSGame implements Game {
 
     @Override
     public void reset() {
-
+        this.islands = null;
     }
 
     @Override
@@ -156,6 +156,11 @@ public class RTSGame implements Game {
         }
 
         return new float[]{ 100, 100 };
+    }
+
+    @Override
+    public ObjectArrayList<Island> listIslands() {
+        return this.islands;
     }
 
 }

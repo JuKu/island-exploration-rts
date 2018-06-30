@@ -1,7 +1,9 @@
 package com.jukusoft.rts.core;
 
 import com.artemis.World;
+import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.map.MapMeta;
+import com.jukusoft.rts.core.map.island.Island;
 
 import java.io.IOException;
 
@@ -49,5 +51,12 @@ public interface Game {
     * get start position of camera
     */
     public float[] getCameraStartPosition ();
+
+    /**
+    * get list with all islands on map
+     *
+     * @return list with islands on map
+    */
+    public ObjectArrayList<Island> listIslands ();
 
 }
