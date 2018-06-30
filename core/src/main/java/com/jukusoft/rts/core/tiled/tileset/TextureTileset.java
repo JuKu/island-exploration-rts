@@ -9,7 +9,7 @@ public class TextureTileset extends Tileset {
     protected ObjectArrayList<TilesetImage> images = new ObjectArrayList<>();
 
     public TextureTileset (int firstTileID, String name, int tilesetTileWidth, int tilesetTileHeight, int tileCount, int columns) {
-        super(firstTileID);
+        super(firstTileID, firstTileID + tileCount - 1);//-1 because first tile counts also
     }
 
     public void addImage (String source, int width, int height, int firstTileID, int tilesetTileWidth, int tilesetTileHeight, int tileCount, int columns) {

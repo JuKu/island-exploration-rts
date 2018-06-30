@@ -139,7 +139,7 @@ public class TiledMapParser {
                 //get source file
                 String source = element.attributeValue("source");
 
-                TsxTileset tileset = new TsxTileset(firstTileID, tmxDir + source);
+                TsxTileset tileset = new TsxTileset(firstTileID, tmxDir + source, 1024);
 
                 //add tileset to list
                 this.tilesets.add(tileset);

@@ -41,6 +41,7 @@ public class IslandParserTest {
             island.put("width", 30 + i);
             island.put("height", 40 + i);
 
+            island.put("orientation", "orthogonal");
             island.put("tmx_file", "island_" + i + ".tmx");
 
             //add json object to array

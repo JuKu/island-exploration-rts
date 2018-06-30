@@ -16,6 +16,15 @@ See LICENSE.txt in directories to see correct license.
   - [KokoroReflections](https://kokororeflections.com/free-old-fashioned-parallax-pirate-ship-for-rpg-maker/)
   - [KnoblePersona](http://opengameart.org/content/ocean-background)
   
+### Music
+
+### Main Menu Soundtrack
+
+  - [Kistol](https://opengameart.org/content/song-of-the-sea)
+  - CC-BY 3.0 license
+  - e.q. used in main menu
+  - Path: data/music/mainmenu
+  
 ### Sounds
 
   - [Menu Selection Sound by NenadSimic](https://opengameart.org/content/menu-selection-click)
@@ -60,3 +69,5 @@ Thank you very much!
   - https://opengameart.org/content/lpc-terrain-repack (terrain pack)
   - https://opengameart.org/content/lpc-plant-repack (lpc plants)
   - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles (tilesets)
+  
+  - https://opengameart.org/content/song-of-the-sea (main menu music?)
