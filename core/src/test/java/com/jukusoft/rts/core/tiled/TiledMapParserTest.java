@@ -46,4 +46,23 @@ public class TiledMapParserTest {
         assertEquals(1, parser.listLayers().size());
     }
 
+    @Test
+    public void testLoad1 () throws IOException {
+        TiledMapParser parser = new TiledMapParser();
+        parser.load(new File("../maps/example/junit/test_island2.tmx"));
+
+        assertEquals("1.0", parser.getTmxFormatVersion());
+        assertEquals(Orientation.ORTHOGONAL, parser.getOrientation());
+        assertEquals(20, parser.getWidth());
+        assertEquals(20, parser.getHeight());
+        assertEquals(32, parser.getTileWidth());
+        assertEquals(32, parser.getTileHeight());
+
+        assertEquals(640, parser.getWidthInPixels());
+        assertEquals(640, parser.getHeightInPixels());
+
+        assertEquals(2, parser.listTilesets().size());
+        assertEquals(1, parser.listLayers().size());
+    }
+
 }

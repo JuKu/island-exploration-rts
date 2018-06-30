@@ -4,6 +4,7 @@ import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
 import com.jukusoft.rts.core.tiled.tileset.Tileset;
 import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
+import org.apache.commons.codec.binary.Base64;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -13,6 +14,10 @@ import org.dom4j.io.SAXReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -211,8 +216,13 @@ public class TiledMapParser {
             int layerWidth = Integer.parseInt(layerElement.attributeValue("width"));
             int layerHeight = Integer.parseInt(layerElement.attributeValue("height"));
 
+            float opacity = Float.parseFloat(layerElement.attributeValue("opacity", "1"));
+            boolean visible = layerElement.attributeValue("visible", "1").equals("1");
+            float offsetx = Float.parseFloat(layerElement.attributeValue("offsetx", "0"));
+            float offsety = Float.parseFloat(layerElement.attributeValue("offsety", "0"));
+
             //create new layer
-            TiledLayer layer = new TiledLayer(name, layerWidth, layerHeight);
+            TiledLayer layer = new TiledLayer(name, layerWidth, layerHeight, opacity, visible, offsetx, offsety);
 
             //parse layer, get data element
             Node dataNode = layerNode.selectSingleNode("data");
@@ -223,30 +233,102 @@ public class TiledMapParser {
 
             Element dataElement = (Element) dataNode;
 
-            //check encoding
+            //check encoding and compression
             String encoding = dataElement.attributeValue("encoding");
+
+            //the compression used to compress the tile layer data. Tiled supports “gzip” and “zlib”.
+            String compression = dataElement.attributeValue("compression");
+
+            if (compression != null) {
+                throw new UnsupportedOperationException("tiled map compression isnt supported yet. Compression of map: " + compression);
+            }
+
+            LocalLogger.print("parse layer '" + name + "'.");
+
+            int[] tileIDs = null;
 
             if (encoding == null) {
                 //no encoding set, plain XML
-                this.parsePlainXMLLayer(dataElement, layer);
+                tileIDs = this.parsePlainXMLLayer(dataElement);
             } else if (encoding.equals("base64")) {
                 //base64 encoding
-                this.parseBase64Layer(dataElement, layer);
+                tileIDs = this.parseBase64Layer(dataElement);
             } else {
                 throw new UnsupportedOperationException("TMX layer encoding '" + encoding + "' isnt supported yet, use plain xml or 'base64' instead.");
             }
+
+            //set tile ids
+            layer.setGIDs(tileIDs);
 
             //add layer to list
             this.layers.add(layer);
         }
     }
 
-    protected void parsePlainXMLLayer (Element dataElement, TiledLayer layer) {
-        //
+    /**
+     * parse data field
+     *
+     * @return int array with gid's (global tile IDs)
+     */
+    protected int[] parsePlainXMLLayer (Element dataElement) {
+        List<Node> tileIDNodes = dataElement.selectNodes("tile");
+
+        int[] result = new int[tileIDNodes.size()];
+
+        //convert tile nodes to int array
+        for (int i = 0; i < tileIDNodes.size(); i++) {
+            Element tile = (Element) tileIDNodes.get(i);
+            result[i] = Integer.parseInt(tile.attributeValue("gid"));
+        }
+
+        return result;
     }
 
-    protected void parseBase64Layer (Element dataElement, TiledLayer layer) {
-        //
+    /**
+    * parse data field with base64 encoding
+     *
+     * @return int array with gid's (global tile IDs)
+    */
+    protected int[] parseBase64Layer (Element dataElement) {
+        /**
+        * from tmx map format specification:
+         *
+         * The base64-encoded and optionally compressed layer data is somewhat more complicated to parse.
+         * First you need to base64-decode it, then you may need to decompress it.
+         * Now you have an array of bytes, which should be interpreted as an array of unsigned 32-bit integers using little-endian byte ordering.
+         *
+         * @link http://docs.mapeditor.org/en/stable/reference/tmx-map-format/#tmx-data
+        */
+
+        //get byte array which should be interpreted as integers
+        byte[] decoded = Base64.decodeBase64(dataElement.getText());
+
+        if (decoded.length % 4 != 0) {
+            throw new IllegalArgumentException("invalide length of base64 string.");
+        }
+
+        IntBuffer intBuffer = ByteBuffer.wrap(decoded)
+                        .order(ByteOrder.LITTLE_ENDIAN)
+                        .asIntBuffer();
+
+        int[] result = new int[decoded.length / 4];
+
+        /**
+        * Whatever format you choose for your layer data, you will always end up with so called “global tile IDs” (gids).
+         * They are global, since they may refer to a tile from any of the tilesets used by the map.
+         * In order to find out from which tileset the tile is you need to find the tileset with the highest firstgid
+         * that is still lower or equal than the gid. The tilesets are always stored with increasing firstgids.
+         *
+         * @link http://docs.mapeditor.org/en/stable/reference/tmx-map-format/#tmx-data
+        */
+        for (int i = 0; i < intBuffer.limit(); i++) {
+            int gid = intBuffer.get(i);
+
+            //convert int buffer to int array
+            result[i] = gid;
+        }
+
+        return result;
     }
 
     protected Document parse(File file) throws DocumentException {
