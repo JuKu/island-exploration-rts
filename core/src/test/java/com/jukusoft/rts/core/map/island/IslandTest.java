@@ -37,6 +37,16 @@ public class IslandTest {
         new Island(1, "test", 0, -1, 200, 200, Orientation.ORTHOGONAL, "island.tmx");
     }
 
+    @Test (expected = NullPointerException.class)
+    public void testConstructor6 () {
+        new Island(1, "test", 0, 0, 200, 200, null, "island.tmx");
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void testConstructor7 () {
+        new Island(1, "test", 0, 0, 200, 200, Orientation.ORTHOGONAL, null);
+    }
+
     @Test
     public void testNullPositionConstructor () {
         new Island(1, "test", 0, 0, 200, 200, Orientation.ORTHOGONAL, "island.tmx");

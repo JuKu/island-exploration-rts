@@ -39,13 +39,21 @@ public class Island {
             throw new IllegalArgumentException("y position has to be >= 0.");
         }
 
+        if (orientation == null) {
+            throw new NullPointerException("orientation cannot be null.");
+        }
+
+        if (tmxPath == null) {
+            throw new NullPointerException("tmx path cannot be null.");
+        }
+
         this.id = id;
         this.title = title;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.orientation = this.orientation;
+        this.orientation = orientation;
         this.tmxPath = tmxPath;
     }
 
