@@ -115,9 +115,9 @@ public class TiledMapParser {
         this.tileHeight = Integer.parseInt(rootElement.attributeValue("tileheight"));
 
         //get all tilesets
-        List<Node> tilesets = doc.selectNodes("/map/tileset");
+        List<Node> tilesetNodes = doc.selectNodes("/map/tileset");
 
-        for (Node node : tilesets) {
+        for (Node node : tilesetNodes) {
             Element element = (Element) node;
 
             //get first tileID of tileset
@@ -251,8 +251,7 @@ public class TiledMapParser {
 
     protected Document parse(File file) throws DocumentException {
         SAXReader reader = new SAXReader();
-        Document document = reader.read(file);
-        return document;
+        return reader.read(file);
     }
 
     public String getTmxFormatVersion() {
