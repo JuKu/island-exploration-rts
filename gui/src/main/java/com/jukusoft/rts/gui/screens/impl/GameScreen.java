@@ -149,17 +149,10 @@ public class GameScreen implements IScreen {
         //render water
         this.waterRenderer.draw(game, this.time, camera, batch);
 
-        //because of TiledMapRenderer, we have end() and begin() batch (limitations of libGDX)
-        batch.end();
-
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-
         //render islands
         this.islandRendererList.iterator().forEachRemaining(renderer -> {
             renderer.value.draw(game, this.time, camera, batch);
         });
-
-        batch.begin();
 
         //TODO: render entities
     }

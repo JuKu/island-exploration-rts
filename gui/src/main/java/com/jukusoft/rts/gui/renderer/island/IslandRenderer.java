@@ -3,11 +3,14 @@ package com.jukusoft.rts.gui.renderer.island;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.utils.IntMap;
+import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.island.Island;
+import com.jukusoft.rts.core.tiled.TiledLayer;
 import com.jukusoft.rts.core.tiled.TiledMapParser;
 import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
 import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
@@ -31,9 +34,12 @@ public class IslandRenderer implements IRenderer {
     protected final Island island;
     protected final TiledMapParser parser;
 
+    //map with tileIDs - texture region
     protected IntMap<TextureRegion> tiles = new IntMap<>();
 
-    protected BatchTiledMapRenderer renderer = null;
+    //list with all layers
+    protected ObjectArrayList<LayerRenderer> layerRendererList = new ObjectArrayList<>();
+    protected LayerRenderer[] layers = null;//cache array for better performance
 
     //https://gamedevelopment.tutsplus.com/tutorials/parsing-and-rendering-tiled-tmx-format-maps-in-your-own-game-engine--gamedev-3104
 
@@ -49,17 +55,18 @@ public class IslandRenderer implements IRenderer {
 
     @Override
     public void draw(Game game, GameTime time, CameraHelper camera, SpriteBatch batch) {
-        //
+        //check, if island is visible on map
+        if (!this.isInBounds(camera)) {
+            return;
+        }
+
+        //draw layers
+        for (int i = 0; i < this.layers.length; i++) {
+            layers[i].draw(game, time, camera, batch);
+        }
     }
 
     public void loadSync () {
-        /*this.renderer = new BatchTiledMapRenderer() {
-            @Override
-            public void renderTileLayer(TiledMapTileLayer layer) {
-                layer.getCell(0, 0).getTile().getTextureRegion()
-            }
-        }*/
-
         //check, required assets
         parser.listTilesets().iterator().forEachRemaining(tileset -> {
             if (tileset instanceof TextureTileset) {
@@ -93,27 +100,85 @@ public class IslandRenderer implements IRenderer {
 
                             //put id to map
                             this.tiles.put(tileID, tileRegion);
-
-                            LocalLogger.print("cell: (" + x + ", " + y + "): " + tileID + " xPos: " + tileX + ", yPos: " + tileY);
                         }
                     }
-
-                    //TODO: calculate tileIDs and fill tiles map
                 });
             } else if (tileset instanceof TsxTileset) {
-                //
+                //TODO: add code here
+            } else {
+                throw new UnsupportedOperationException("tileset type '" + tileset.getClass().getSimpleName() + "' is not supported yet.");
+            }
+        });
+
+        this.layers = new LayerRenderer[parser.listLayers().size()];
+
+        int layerID = 0;
+
+        //set cells of layers
+        for (TiledLayer layer : parser.listLayers()) {
+            LayerRenderer layerRenderer = new LayerRenderer(layer.getWidth(), layer.getHeight(), island.getX(), island.getY(), layer.getWidth(), layer.getHeight(), parser.getTileWidth(), parser.getTileHeight());
+
+            int tileIDs[] = layer.getTileIDs();
+
+            for (int y = 0; y < layer.getHeight(); y++) {
+                for (int x = 0; x < layer.getWidth(); x++) {
+                    //calculate index
+                    int index = y * layer.getWidth() + x;
+
+                    //get id of tile to draw
+                    int tileID = tileIDs[index];
+
+                    //get texture region of tile
+                    TextureRegion region = this.tiles.get(tileID);
+
+                    if (region != null) {
+                        layerRenderer.setCell(x, y, region);
+                    }
+                }
+            }
+
+            //set visible flag
+            layerRenderer.setVisible(layer.isVisible());
+
+            this.layerRendererList.add(layerRenderer);
+            this.layers[layerID] = layerRenderer;
+
+            layerID++;
+        }
+    }
+
+    @Override
+    public void dispose() {
+        this.tiles.clear();
+        this.layers = null;
+
+        //dispose layers
+        this.layerRendererList.iterator().forEachRemaining(layer -> {
+            layer.value.dispose();
+        });
+
+        //unload tilesets
+        parser.listTilesets().iterator().forEachRemaining(tileset -> {
+            if (tileset instanceof TextureTileset) {
+                TextureTileset tileset1 = (TextureTileset) tileset;
+
+                //check, if images are loaded
+                tileset1.listTextures().iterator().forEachRemaining(texture -> {
+                    assetManager.unload(texture.value.source);
+
+                    LocalLogger.print("unload tileset: " + texture.value.source);
+                });
+            } else if (tileset instanceof TsxTileset) {
+                //TODO: add code here
             } else {
                 throw new UnsupportedOperationException("tileset type '" + tileset.getClass().getSimpleName() + "' is not supported yet.");
             }
         });
     }
 
-    @Override
-    public void dispose() {
-        //
-    }
-
     protected boolean isInBounds (CameraHelper camera) {
+        //TODO: add code here
+
         return true;
     }
 
