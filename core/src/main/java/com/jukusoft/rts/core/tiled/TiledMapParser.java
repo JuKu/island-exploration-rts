@@ -135,8 +135,6 @@ public class TiledMapParser {
                 //get source file
                 String source = element.attributeValue("source");
 
-                //TODO: add code here
-
                 TsxTileset tileset = new TsxTileset(firstTileID, source);
 
                 //add tileset to list
