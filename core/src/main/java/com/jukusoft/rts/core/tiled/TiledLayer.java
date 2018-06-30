@@ -31,7 +31,7 @@ public class TiledLayer {
         this.offsety = offsety;
     }
 
-    public void setGIDs (int[] tileIDs) {
+    public void setTileIDs(int[] tileIDs) {
         if (tileIDs == null) {
             throw new NullPointerException("tileIDs cannot be null.");
         }
@@ -88,6 +88,10 @@ public class TiledLayer {
     }
 
     public int[] getTileIDs() {
+        if (this.tileIDs == null) {
+            throw new IllegalStateException("tileIDs wasnt set before, call setTileIDs() first.");
+        }
+
         return tileIDs;
     }
 

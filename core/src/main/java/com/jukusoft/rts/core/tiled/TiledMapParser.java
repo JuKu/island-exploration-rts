@@ -257,7 +257,7 @@ public class TiledMapParser {
             }
 
             //set tile ids
-            layer.setGIDs(tileIDs);
+            layer.setTileIDs(tileIDs);
 
             //parse properties
             Node properties = layerElement.selectSingleNode("properties");
