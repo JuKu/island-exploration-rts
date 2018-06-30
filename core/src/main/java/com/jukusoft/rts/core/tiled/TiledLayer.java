@@ -43,6 +43,22 @@ public class TiledLayer {
         this.tileIDs = tileIDs;
     }
 
+    public void addBoolProperty (String key, boolean value) {
+        //
+    }
+
+    public void addIntProperty (String key, int value) {
+        //
+    }
+
+    public void addFloatProperty (String key, float value) {
+        //
+    }
+
+    public void addStringProperty (String key, String value) {
+        //
+    }
+
     public String getName() {
         return name;
     }

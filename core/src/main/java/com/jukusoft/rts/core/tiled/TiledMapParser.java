@@ -260,6 +260,47 @@ public class TiledMapParser {
             //set tile ids
             layer.setGIDs(tileIDs);
 
+            //parse properties
+            Node properties = layerElement.selectSingleNode("properties");
+
+            if (properties != null) {
+                //properties are specified
+
+                List<Node> propertyNodes = properties.selectNodes("property");
+
+                for (Node propertyNode : propertyNodes) {
+                    Element propertyElement = (Element) propertyNode;
+
+                    String key = propertyElement.attributeValue("name");
+                    String type = propertyElement.attributeValue("type", "string");
+
+                    if (key == null) {
+                        throw new TiledParserException("tiled map property doesnt contains a key.");
+                    }
+
+                    switch (type) {
+                        case "bool":
+                            layer.addBoolProperty(key, Boolean.parseBoolean(propertyElement.attributeValue("value")));
+                            break;
+
+                        case "int":
+                            layer.addIntProperty(key, Integer.parseInt(propertyElement.attributeValue("value")));
+                            break;
+
+                        case "float":
+                            layer.addFloatProperty(key, Float.parseFloat(propertyElement.attributeValue("value")));
+                            break;
+
+                        case "string":
+                            layer.addStringProperty(key, propertyElement.attributeValue("value"));
+                            break;
+
+                            default:
+                                throw new TiledParserException("Unknown property type: " + type);
+                    }
+                }
+            }
+
             //add layer to list
             this.layers.add(layer);
         }
