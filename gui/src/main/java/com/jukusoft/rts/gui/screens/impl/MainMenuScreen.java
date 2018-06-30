@@ -2,6 +2,7 @@ package com.jukusoft.rts.gui.screens.impl;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.AbsoluteFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -40,6 +41,7 @@ public class MainMenuScreen implements IScreen {
     protected static final String BG_PATH = "data/misc/wallpaper/ocean/Ocean_large.png";
     protected static final String SHIP_PATH = "data/misc/wallpaper/pirateship/edited/ship_scaled.png";
     protected static final String SOUND_PATH = "data/sound/menu_selection_click/menu_selection_click_16bit.wav";
+    protected static final String MUSIC_PATH = "data/music/mainmenu/Song_of_the_Sea.ogg";
 
     //images
     protected Image screenBG = null;
@@ -51,6 +53,9 @@ public class MainMenuScreen implements IScreen {
 
     //sounds
     protected Sound hoverSound = null;
+
+    //music
+    protected Music music = null;
 
     protected TextButton[] buttons;
 
@@ -95,6 +100,7 @@ public class MainMenuScreen implements IScreen {
         assetManager.load(BG_PATH, Texture.class);
         assetManager.load(SHIP_PATH, Texture.class);
         assetManager.load(SOUND_PATH, Sound.class);
+        assetManager.load(MUSIC_PATH, Music.class);
 
         assetManager.finishLoading();
 
@@ -184,6 +190,11 @@ public class MainMenuScreen implements IScreen {
         labelColor.fill();
         this.versionLabel.getStyle().background = new Image(new Texture(labelColor)).getDrawable();
         stage.addActor(versionLabel);
+
+        this.music = assetManager.get(MUSIC_PATH, Music.class);
+
+        //start music
+        this.music.play();
 
         //set input processor
         Gdx.input.setInputProcessor(stage);
