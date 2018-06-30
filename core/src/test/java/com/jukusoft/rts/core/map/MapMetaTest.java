@@ -46,6 +46,9 @@ public class MapMetaTest {
         assertEquals(false, map.getMinimap().isEmpty());
         assertEquals(true, map.getCameraStartX() > 0);
         assertEquals(true, map.getCameraStartY() > 0);
+
+        map.setDir("maps/test2/");
+        assertEquals("maps/test2/", map.getDir());
     }
 
 }

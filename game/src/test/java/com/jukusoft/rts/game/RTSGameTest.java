@@ -50,6 +50,8 @@ public class RTSGameTest {
         Game game = new RTSGame();
         game.loadGame("test");
 
+        game.getMapMeta().setDir("../maps/example/");
+
         game.loadAsync();
         game.update();
 

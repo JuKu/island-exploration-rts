@@ -75,6 +75,10 @@ public class MapMeta {
         return dir;
     }
 
+    public void setDir (String dir) {
+        this.dir = dir;
+    }
+
     public String getTitle() {
         return title;
     }
