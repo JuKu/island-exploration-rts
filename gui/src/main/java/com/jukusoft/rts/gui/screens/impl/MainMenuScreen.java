@@ -196,6 +196,9 @@ public class MainMenuScreen implements IScreen {
         //start music
         this.music.play();
 
+        //loop music
+        this.music.setLooping(true);
+
         //set input processor
         Gdx.input.setInputProcessor(stage);
     }
