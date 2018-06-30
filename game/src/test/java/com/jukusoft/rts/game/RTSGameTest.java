@@ -61,6 +61,20 @@ public class RTSGameTest {
         assertEquals(true, game.getCameraStartPosition()[1] > 0);
     }
 
+    @Test (expected = IllegalStateException.class)
+    public void testLoadGame1 () throws Exception {
+        Game game = new RTSGame();
+        game.loadGame("test");
+
+        game.loadAsync();
+        game.update();
+
+        assertNotNull(game.getMapMeta());
+        assertNotNull(game.getSeaWorld());
+        assertEquals(true, game.getCameraStartPosition()[0] > 0);
+        assertEquals(true, game.getCameraStartPosition()[1] > 0);
+    }
+
     @Test
     public void testResetGame () throws IOException {
         Game game = new RTSGame();

@@ -15,6 +15,15 @@ public class IslandParserTest {
         new IslandParser();
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void testParseIslandsInvalideDir () {
+        //create an example json object
+        JSONObject json = new JSONObject();
+
+        IslandParser parser = new IslandParser();
+        parser.parseIslands(json, "maps/example");
+    }
+
     @Test
     public void testParseIslands () {
         //create an example json object
