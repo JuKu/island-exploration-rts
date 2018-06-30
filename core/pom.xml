@@ -33,6 +33,13 @@
 			<version>${dom4j.version}</version>
 		</dependency>
 
+		<!-- Apache Commons Codec, e.q. for decoding base64 .tmx maps -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${apache.commons.codec.version}</version>
+		</dependency>
+
 		<!-- artemis-odb -->
 		<dependency>
 			<groupId>net.onedaybeard.artemis</groupId>

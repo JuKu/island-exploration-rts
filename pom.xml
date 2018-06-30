@@ -49,6 +49,9 @@
 		<!-- dom4j xml parser -->
 		<dom4j.version>2.1.0</dom4j.version>
 
+		<!-- Apache Commons Codec, e.q. for base64 decoding of .tmx maps -->
+		<apache.commons.codec.version>1.11</apache.commons.codec.version>
+
 		<!-- artemis-odb entity-component-system -->
 		<artemis.version>2.1.0</artemis.version>
 		<artemis.optimizeSystems>true</artemis.optimizeSystems>
