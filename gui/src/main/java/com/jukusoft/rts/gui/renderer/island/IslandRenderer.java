@@ -1,17 +1,13 @@
 package com.jukusoft.rts.gui.renderer.island;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.island.Island;
-import com.jukusoft.rts.core.tiled.Orientation;
+import com.jukusoft.rts.core.tiled.TiledMapParser;
+import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
+import com.jukusoft.rts.core.tiled.tileset.Tileset;
+import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.camera.CameraHelper;
@@ -19,38 +15,43 @@ import com.jukusoft.rts.gui.renderer.IRenderer;
 
 public class IslandRenderer implements IRenderer {
 
-    protected final TiledMap tiledMap;
-    protected final TiledMapRenderer tiledMapRenderer;
+    //asset manager
+    protected GameAssetManager assetManager = GameAssetManager.getInstance();
 
-    public IslandRenderer (Island island) {
-        //get asset manager
-        GameAssetManager assetManager = GameAssetManager.getInstance();
+    //island
+    protected final Island island;
+    protected final TiledMapParser parser;
 
-        //get assets first
-        assetManager.finishLoading(island.getTmxPath());
-
-        this.tiledMap = assetManager.get(island.getTmxPath(), TiledMap.class);
-
-        if (island.getOrientation() == Orientation.ISOMETRIC) {
-            this.tiledMapRenderer = new IsometricTiledMapRenderer(this.tiledMap);
-        } else if (island.getOrientation() == Orientation.ORTHOGONAL) {
-            this.tiledMapRenderer = new OrthoCachedTiledMapRenderer(this.tiledMap);
-        } else {
-            throw new UnsupportedOperationException("Orientation '" + island.getOrientation().name() + "' isnt supported yet.");
-        }
-
-        LocalLogger.print("IslandRenderer: tiled map was loaded successfully!");
+    public IslandRenderer (Island island, TiledMapParser parser) {
+        this.island = island;
+        this.parser = parser;
     }
 
     @Override
     public void update(Game game, GameTime time) {
-
+        //
     }
 
     @Override
     public void draw(Game game, GameTime time, CameraHelper camera, SpriteBatch batch) {
-        tiledMapRenderer.setView(camera.getOriginalCamera());
-        tiledMapRenderer.render();
+        //
+    }
+
+    public void loadSync () {
+        //check, required assets
+        parser.listTilesets().iterator().forEachRemaining(tileset -> {
+            if (tileset instanceof TextureTileset) {
+                //check, if images are loaded
+                ((TextureTileset) tileset).listTextures().iterator().forEachRemaining(texture -> {
+                    LocalLogger.print("finish loading of asset: " + texture.value.source);
+                    assetManager.finishLoading(texture.value.source);
+                });
+            } else if (tileset instanceof TsxTileset) {
+                //
+            } else {
+                throw new UnsupportedOperationException("tileset type '" + tileset.getClass().getSimpleName() + "' is not supported yet.");
+            }
+        });
     }
 
     @Override

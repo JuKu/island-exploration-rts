@@ -198,6 +198,9 @@ public class GameScreen implements IScreen {
             return;
         }
 
+        //init island renderer
+        ObjectArrayList<Island> islands = game.listIslands();
+
         //load tiled map resources
         for (int i = 0; i < game.listIslands().size(); i++) {
             Island island = game.listIslands().get(i);
@@ -209,6 +212,14 @@ public class GameScreen implements IScreen {
 
             TiledMapParser parser = new TiledMapParser();
             parser.load(new File(tmxPath));
+
+            //add new renderer
+            IslandRenderer renderer = new IslandRenderer(island, parser);
+
+            //add renderer to list
+            this.islandRendererList.add(renderer);
+
+            LocalLogger.print("island renderer initialized successfully.");
 
             //get tilesets
             List<Tileset> tilesets = parser.listTilesets();
@@ -265,22 +276,8 @@ public class GameScreen implements IScreen {
             throw new IllegalStateException("call loadAsync() before calling loadSync()!");
         }
 
-        //init island renderer
-        ObjectArrayList<Island> islands = game.listIslands();
-
-        for (int i = 0; i < islands.size(); i++) {
-            Island island = islands.get(i);
-            LocalLogger.print("init island renderer for island '" + island.getTitle() + "'...");
-            LocalLogger.print("tmx path: " + island.getTmxPath());
-
-            //add new renderer
-            IslandRenderer renderer = new IslandRenderer(island);
-
-            //add renderer to list
-            this.islandRendererList.add(renderer);
-
-            LocalLogger.print("island renderer initialized successfully.");
-        }
+        //finish load gpu resources
+        islandRendererList.iterator().forEachRemaining(renderer -> renderer.value.loadSync());
     }
 
 }
