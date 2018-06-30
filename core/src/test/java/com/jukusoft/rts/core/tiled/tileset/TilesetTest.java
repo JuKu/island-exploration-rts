@@ -1,6 +1,5 @@
-package com.jukusoft.rts.core.map.tileset;
+package com.jukusoft.rts.core.tiled.tileset;
 
-import com.jukusoft.rts.core.tiled.tileset.Tileset;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
