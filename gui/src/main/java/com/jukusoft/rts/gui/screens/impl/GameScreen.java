@@ -168,6 +168,8 @@ public class GameScreen implements IScreen {
     * will be executed from LoadGameScreen in another thread
     */
     public void loadAsync () throws IOException {
+        Utils.printSection("GameScreen::loadAsync()");
+
         LocalLogger.print(I.tr("create camera"));
 
         //create new camera
