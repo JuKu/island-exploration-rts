@@ -1,5 +1,8 @@
 package com.jukusoft.rts.gui.screens.impl;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.carrotsearch.hppc.ObjectArrayList;
@@ -8,6 +11,10 @@ import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.MapMeta;
 import com.jukusoft.rts.core.map.island.Island;
 import com.jukusoft.rts.core.speed.GameSpeed;
+import com.jukusoft.rts.core.tiled.TiledMapParser;
+import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
+import com.jukusoft.rts.core.tiled.tileset.Tileset;
+import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.core.utils.Utils;
@@ -21,6 +28,9 @@ import com.jukusoft.rts.gui.screens.Screens;
 import com.teamunify.i18n.I;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GameScreen implements IScreen {
@@ -139,10 +149,17 @@ public class GameScreen implements IScreen {
         //render water
         this.waterRenderer.draw(game, this.time, camera, batch);
 
+        //because of TiledMapRenderer, we have end() and begin() batch (limitations of libGDX)
+        batch.end();
+
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
         //render islands
         this.islandRendererList.iterator().forEachRemaining(renderer -> {
             renderer.value.draw(game, this.time, camera, batch);
         });
+
+        batch.begin();
 
         //TODO: render entities
     }
@@ -150,7 +167,7 @@ public class GameScreen implements IScreen {
     /**
     * will be executed from LoadGameScreen in another thread
     */
-    public void loadAsync () {
+    public void loadAsync () throws IOException {
         LocalLogger.print(I.tr("create camera"));
 
         //create new camera
@@ -187,6 +204,42 @@ public class GameScreen implements IScreen {
 
             //get tmx path
             String tmxPath = island.getTmxPath();
+
+            LocalLogger.print("");
+
+            TiledMapParser parser = new TiledMapParser();
+            parser.load(new File(tmxPath));
+
+            //get tilesets
+            List<Tileset> tilesets = parser.listTilesets();
+
+            //load textures for tilesets
+            for (Tileset tileset : tilesets) {
+                if (tileset instanceof TextureTileset) {
+                    TextureTileset tileset1 = (TextureTileset) tileset;
+                    ObjectArrayList<TextureTileset.TilesetImage> requiredTextures = tileset1.listTextures();
+
+                    //load images
+                    for (int k = 0; k < requiredTextures.size(); k++) {
+                        TextureTileset.TilesetImage texture = requiredTextures.get(k);
+
+                        //get texture path
+                        String texturePath = texture.source;
+
+                        //check, if file exists
+                        if (!new File(texturePath).exists()) {
+                            throw new FileNotFoundException("required tileset texture doesnt exists: " + texturePath);
+                        }
+
+                        //load texture
+                        assetManager.load(texturePath, Texture.class);
+                    }
+                } else if (tileset instanceof TsxTileset) {
+                    TsxTileset tileset1 = (TsxTileset) tileset;
+                } else {
+                    throw new UnsupportedOperationException("tileset type " + tileset.getClass().getSimpleName() + " isnt supported yet.");
+                }
+            }
 
             LocalLogger.print("load TiledMap: " + tmxPath);
 

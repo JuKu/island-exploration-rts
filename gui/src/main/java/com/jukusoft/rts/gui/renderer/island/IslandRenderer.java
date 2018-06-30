@@ -1,5 +1,7 @@
 package com.jukusoft.rts.gui.renderer.island;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
@@ -47,12 +49,17 @@ public class IslandRenderer implements IRenderer {
 
     @Override
     public void draw(Game game, GameTime time, CameraHelper camera, SpriteBatch batch) {
-        //
+        tiledMapRenderer.setView(camera.getOriginalCamera());
+        tiledMapRenderer.render();
     }
 
     @Override
     public void dispose() {
+        //
+    }
 
+    protected boolean isInBounds (CameraHelper camera) {
+        return true;
     }
 
 }

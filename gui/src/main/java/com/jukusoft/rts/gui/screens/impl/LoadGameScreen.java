@@ -8,6 +8,7 @@ import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.screens.Screens;
 import com.teamunify.i18n.I;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class LoadGameScreen extends GUIScreen {
@@ -31,7 +32,16 @@ public class LoadGameScreen extends GUIScreen {
         //start another thread to load game
         new Thread(() -> {
             //load maps, resouces and so on asynchronous in extra thread
-            gameScreen.loadAsync();
+            try {
+                gameScreen.loadAsync();
+            } catch (IOException e) {
+                LocalLogger.printStacktrace(e);
+
+                //go back to main menu
+                Platform.runOnUIThread(() -> screenManager.leaveAllAndEnter(Screens.MAIN_MENU));
+
+                return;
+            }
 
             //map loading finished, so set flag
             this.gameLoaded.set(true);

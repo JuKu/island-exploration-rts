@@ -64,6 +64,8 @@ public class TiledMapParser {
             throw new FileNotFoundException("tiled map doesnt exists.");
         }
 
+        LocalLogger.print("TiledMapParser: load " + xmlFile.getAbsolutePath());
+
         Document doc = null;
 
         try {
@@ -93,6 +95,8 @@ public class TiledMapParser {
         } else {
             throw new UnsupportedOperationException("orientation '" + orientation + "' isnt supported by this tmx parser.");
         }
+
+        String tmxDir = xmlFile.getParent().replace("\\", "/") + "/";
 
         /**
          *  check render-order, only right-down is supported
@@ -135,7 +139,7 @@ public class TiledMapParser {
                 //get source file
                 String source = element.attributeValue("source");
 
-                TsxTileset tileset = new TsxTileset(firstTileID, source);
+                TsxTileset tileset = new TsxTileset(firstTileID, tmxDir + source);
 
                 //add tileset to list
                 this.tilesets.add(tileset);
@@ -181,10 +185,10 @@ public class TiledMapParser {
                     int imageWidth = Integer.parseInt(imageElement.attributeValue("width"));
                     int imageHeight = Integer.parseInt(imageElement.attributeValue("height"));
 
-                    LocalLogger.print("tileset image found: " + source + ", width: " + imageWidth + ", height: " + imageHeight);
+                    LocalLogger.print("tileset image found: " + tmxDir + source + ", width: " + imageWidth + ", height: " + imageHeight);
 
                     //add image to tileset
-                    tileset.addImage(source, imageWidth, imageHeight);
+                    tileset.addImage(tmxDir + source, imageWidth, imageHeight, firstTileID, tilesetTileWidth, tilesetTileHeight, tileCount, columns);
                 }
 
                 //add tileset to list
