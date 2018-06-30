@@ -5,6 +5,7 @@ import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.map.MapMeta;
+import com.jukusoft.rts.core.map.island.Island;
 import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
@@ -190,6 +191,20 @@ public class GameScreen implements IScreen {
         }
 
         //init island renderer
+        ObjectArrayList<Island> islands = game.listIslands();
+
+        for (int i = 0; i < islands.size(); i++) {
+            Island island = islands.get(i);
+            LocalLogger.print("init island renderer for island '" + island.getTitle() + "'...");
+
+            //add new renderer
+            IslandRenderer renderer = new IslandRenderer(island);
+
+            //add renderer to list
+            this.islandRendererList.add(renderer);
+
+            LocalLogger.print("island renderer initialized successfully.");
+        }
     }
 
 }
