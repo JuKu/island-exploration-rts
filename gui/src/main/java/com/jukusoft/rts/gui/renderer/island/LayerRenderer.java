@@ -3,7 +3,6 @@ package com.jukusoft.rts.gui.renderer.island;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jukusoft.rts.core.Game;
-import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 import com.jukusoft.rts.gui.renderer.IRenderer;

@@ -4,7 +4,6 @@ import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
 import com.jukusoft.rts.core.tiled.tileset.Tileset;
 import com.jukusoft.rts.core.tiled.tileset.TsxParser;
-import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
 import org.apache.commons.codec.binary.Base64;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
