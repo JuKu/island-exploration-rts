@@ -3,8 +3,6 @@ package com.jukusoft.rts.gui.renderer.island;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.utils.IntMap;
 import com.carrotsearch.hppc.ObjectArrayList;
 import com.jukusoft.rts.core.Game;
@@ -13,7 +11,6 @@ import com.jukusoft.rts.core.map.island.Island;
 import com.jukusoft.rts.core.tiled.TiledLayer;
 import com.jukusoft.rts.core.tiled.TiledMapParser;
 import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
-import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.camera.CameraHelper;
@@ -117,7 +114,7 @@ public class IslandRenderer implements IRenderer {
         for (TiledLayer layer : parser.listLayers()) {
             LayerRenderer layerRenderer = new LayerRenderer(layer.getWidth(), layer.getHeight(), island.getX(), island.getY(), layer.getWidth(), layer.getHeight(), parser.getTileWidth(), parser.getTileHeight());
 
-            int tileIDs[] = layer.getTileIDs();
+            int[] tileIDs = layer.getTileIDs();
 
             for (int y = 0; y < layer.getHeight(); y++) {
                 for (int x = 0; x < layer.getWidth(); x++) {

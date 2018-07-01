@@ -60,15 +60,11 @@ public class LayerRenderer implements IRenderer {
                     continue;
                 }
 
-                //LocalLogger.print("(" + x + ", " + y + ") region (" + region.getRegionX() + ", " + region.getRegionY() + ")");
-
                 float tileXPos = x * this.tileWidth + this.xPos;
                 float tileYPos = (this.height - 1 - y) * this.tileHeight + this.yPos;
 
-                //check, if tile is set
-                if (region != null) {
-                    batch.draw(region, tileXPos, tileYPos, this.tileWidth, this.tileHeight);
-                }
+                //render tile
+                batch.draw(region, tileXPos, tileYPos, this.tileWidth, this.tileHeight);
             }
         }
     }

@@ -240,8 +240,6 @@ public class GameScreen implements IScreen {
                         //load texture
                         assetManager.load(texturePath, Texture.class);
                     }
-                } else if (tileset instanceof TsxTileset) {
-                    TsxTileset tileset1 = (TsxTileset) tileset;
                 } else {
                     throw new UnsupportedOperationException("tileset type " + tileset.getClass().getSimpleName() + " isnt supported yet.");
                 }

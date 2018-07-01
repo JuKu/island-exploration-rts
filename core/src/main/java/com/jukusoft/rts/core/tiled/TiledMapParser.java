@@ -144,11 +144,6 @@ public class TiledMapParser {
                 TsxParser tsxParser = new TsxParser();
                 tsxParser.load(new File(tmxDir + source), firstTileID);
 
-                //TsxTileset tileset = new TsxTileset(firstTileID, tmxDir + source, 1024);
-
-                //add tileset to list
-                //this.tilesets.add(tileset);
-
                 this.tilesets.addAll(tsxParser.listTilesets());
             } else {
                 //its a normal texture tileset
