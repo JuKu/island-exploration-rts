@@ -62,6 +62,7 @@ public class IslandTest {
         assertEquals(20, island.getY(), 0.0001f);
         assertEquals(30, island.getWidth());
         assertEquals(40, island.getHeight());
+        assertEquals(Orientation.ORTHOGONAL, island.getOrientation());
         assertEquals("island.tmx", island.getTmxPath());
     }
 

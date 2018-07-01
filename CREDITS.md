@@ -72,6 +72,19 @@ Thank you very much!
   
   - https://opengameart.org/content/song-of-the-sea (main menu music?)
   
+  - https://opengameart.org/content/isometric-render-resource-pack (isometric resource pack)
+  - https://opengameart.org/content/mage-city-arcanos (orthogonal tileset)
+  - https://opengameart.org/content/2d-rpg-lpc-compatible-tilessprites
+  - https://opengameart.org/content/lpc-style-farm-animals (farm animals)
+  - https://opengameart.org/content/top-down-grass-beach-and-water-tileset
+  - https://opengameart.org/content/happyland-tileset
+  - https://opengameart.org/content/2dtileorthogonal (vegetation)
+  - https://opengameart.org/content/grassland-tileset (isometric grassland)
+  - https://opengameart.org/content/free-isometric-plants-pack (isometric plants)
+  - https://opengameart.org/content/grass-and-water-tiles (isometric, grass and water tiles)
+  - https://opengameart.org/content/medieval-building-tiles (isometric, building tiles)
+  -https://opengameart.org/content/simerion-tiles-and-images (isometric tiles & icons)
+  
 ## Tutorials (Linklist)
 
   - https://gamedevelopment.tutsplus.com/
