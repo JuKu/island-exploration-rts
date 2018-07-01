@@ -15,7 +15,7 @@ public class TextureTileset extends Tileset {
     public void addImage (String source, int width, int height, int firstTileID, int tilesetTileWidth, int tilesetTileHeight, int tileCount, int columns) {
         //check, if file exists
         if (!new File(source).exists()) {
-            throw new IllegalArgumentException("source file doesnt exists.");
+            throw new IllegalArgumentException("source file doesnt exists: " + source);
         }
 
         this.images.add(new TilesetImage(source, width, height, firstTileID, tilesetTileWidth, tilesetTileHeight, tileCount, columns));

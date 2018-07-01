@@ -96,7 +96,7 @@ public class IslandRenderer implements IRenderer {
                             int tileY = y * texture.value.tilesetTileHeight;
 
                             //create texture region
-                            TextureRegion tileRegion = new TextureRegion(tex, x, y, tileX, tileY);
+                            TextureRegion tileRegion = new TextureRegion(tex, x, y, texture.value.tilesetTileWidth, texture.value.tilesetTileHeight);
 
                             //put id to map
                             this.tiles.put(tileID, tileRegion);
@@ -133,6 +133,10 @@ public class IslandRenderer implements IRenderer {
 
                     if (region != null) {
                         layerRenderer.setCell(x, y, region);
+                    } else {
+                        if (tileID != 0) {
+                            LocalLogger.warn("Cannot found tileID: " + tileID);
+                        }
                     }
                 }
             }

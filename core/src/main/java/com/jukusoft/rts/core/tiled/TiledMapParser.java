@@ -3,6 +3,7 @@ package com.jukusoft.rts.core.tiled;
 import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
 import com.jukusoft.rts.core.tiled.tileset.Tileset;
+import com.jukusoft.rts.core.tiled.tileset.TsxParser;
 import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
 import org.apache.commons.codec.binary.Base64;
 import org.dom4j.Document;
@@ -139,10 +140,16 @@ public class TiledMapParser {
                 //get source file
                 String source = element.attributeValue("source");
 
-                TsxTileset tileset = new TsxTileset(firstTileID, tmxDir + source, 1024);
+                //parse external tileset file
+                TsxParser tsxParser = new TsxParser();
+                tsxParser.load(new File(tmxDir + source), firstTileID);
+
+                //TsxTileset tileset = new TsxTileset(firstTileID, tmxDir + source, 1024);
 
                 //add tileset to list
-                this.tilesets.add(tileset);
+                //this.tilesets.add(tileset);
+
+                this.tilesets.addAll(tsxParser.listTilesets());
             } else {
                 //its a normal texture tileset
 
