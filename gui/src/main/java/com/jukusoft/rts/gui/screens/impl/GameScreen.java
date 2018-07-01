@@ -1,7 +1,5 @@
 package com.jukusoft.rts.gui.screens.impl;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -14,7 +12,6 @@ import com.jukusoft.rts.core.speed.GameSpeed;
 import com.jukusoft.rts.core.tiled.TiledMapParser;
 import com.jukusoft.rts.core.tiled.tileset.TextureTileset;
 import com.jukusoft.rts.core.tiled.tileset.Tileset;
-import com.jukusoft.rts.core.tiled.tileset.TsxTileset;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.core.utils.Utils;
@@ -192,9 +189,6 @@ public class GameScreen implements IScreen {
 
             return;
         }
-
-        //init island renderer
-        ObjectArrayList<Island> islands = game.listIslands();
 
         //load tiled map resources
         for (int i = 0; i < game.listIslands().size(); i++) {
