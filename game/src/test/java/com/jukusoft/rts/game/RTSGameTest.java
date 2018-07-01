@@ -42,8 +42,8 @@ public class RTSGameTest {
 
         assertNotNull(game.getMapMeta());
         assertNotNull(game.getSeaWorld());
-        assertEquals(true, game.getCameraStartPosition()[0] > 0);
-        assertEquals(true, game.getCameraStartPosition()[1] > 0);
+        assertEquals(true, game.getCameraStartPosition()[0] >= 0);
+        assertEquals(true, game.getCameraStartPosition()[1] >= 0);
     }
 
     @Test
