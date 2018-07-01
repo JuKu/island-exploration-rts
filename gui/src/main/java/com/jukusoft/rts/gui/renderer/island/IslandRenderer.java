@@ -104,8 +104,6 @@ public class IslandRenderer implements IRenderer {
                         }
                     }
                 });
-            } else if (tileset instanceof TsxTileset) {
-                //TODO: add code here
             } else {
                 throw new UnsupportedOperationException("tileset type '" + tileset.getClass().getSimpleName() + "' is not supported yet.");
             }
@@ -130,19 +128,15 @@ public class IslandRenderer implements IRenderer {
                     int tileID = tileIDs[index];
 
                     if (tileID == 0) {
+                        //we dont have to set transparent cells without tiles
                         continue;
                     }
-
-                    //LocalLogger.print("set cell(" + x + ", " + y + "): " + tileID);
 
                     //get texture region of tile
                     TextureRegion region = this.tiles.get(tileID);
 
-                    //LocalLogger.print("region (" + region.getRegionX() + ", " + region.getRegionY() + ")");
-
                     if (region != null) {
-                        layerRenderer.setCell(x, y, new TextureRegion(region.getTexture(), 0, 8, 32, 32));
-                        //layerRenderer.setCell(x, y, new TextureRegion(region.getTexture(), region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight()));
+                        layerRenderer.setCell(x, y, new TextureRegion(region.getTexture(), region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight()));
                     } else {
                         LocalLogger.warn("Cannot found tileID on tilesets: " + tileID);
                     }
@@ -180,8 +174,6 @@ public class IslandRenderer implements IRenderer {
 
                     LocalLogger.print("unload tileset: " + texture.value.source);
                 });
-            } else if (tileset instanceof TsxTileset) {
-                //TODO: add code here
             } else {
                 throw new UnsupportedOperationException("tileset type '" + tileset.getClass().getSimpleName() + "' is not supported yet.");
             }
