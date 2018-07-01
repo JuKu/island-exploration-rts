@@ -5,8 +5,8 @@
 			"title": "Island 1",
 
 			"comment": "island position on map",
-			"x": 100,
-			"y": 100,
+			"x": 0,
+			"y": 0,
 
 			"comment1": "width and height of island in pixels",
 			"width": 640,
