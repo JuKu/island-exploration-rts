@@ -81,6 +81,7 @@ public class IslandRenderer implements IRenderer {
 
                     //get texture
                     Texture tex = assetManager.get(texture.value.source, Texture.class);
+                    LocalLogger.print("texture: " + texture.value.source + ", width: " + tex.getWidth() + ", height: " + tex.getHeight());
 
                     int cols = texture.value.width / texture.value.tilesetTileWidth;
 
@@ -96,7 +97,7 @@ public class IslandRenderer implements IRenderer {
                             int tileY = y * texture.value.tilesetTileHeight;
 
                             //create texture region
-                            TextureRegion tileRegion = new TextureRegion(tex, x, y, texture.value.tilesetTileWidth, texture.value.tilesetTileHeight);
+                            TextureRegion tileRegion = new TextureRegion(tex, tileX, tileY, texture.value.tilesetTileWidth, texture.value.tilesetTileHeight);
 
                             //put id to map
                             this.tiles.put(tileID, tileRegion);
@@ -128,15 +129,22 @@ public class IslandRenderer implements IRenderer {
                     //get id of tile to draw
                     int tileID = tileIDs[index];
 
+                    if (tileID == 0) {
+                        continue;
+                    }
+
+                    //LocalLogger.print("set cell(" + x + ", " + y + "): " + tileID);
+
                     //get texture region of tile
                     TextureRegion region = this.tiles.get(tileID);
 
+                    //LocalLogger.print("region (" + region.getRegionX() + ", " + region.getRegionY() + ")");
+
                     if (region != null) {
-                        layerRenderer.setCell(x, y, region);
+                        layerRenderer.setCell(x, y, new TextureRegion(region.getTexture(), 0, 8, 32, 32));
+                        //layerRenderer.setCell(x, y, new TextureRegion(region.getTexture(), region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight()));
                     } else {
-                        if (tileID != 0) {
-                            LocalLogger.warn("Cannot found tileID: " + tileID);
-                        }
+                        LocalLogger.warn("Cannot found tileID on tilesets: " + tileID);
                     }
                 }
             }

@@ -55,6 +55,13 @@ public class LayerRenderer implements IRenderer {
                 //get cell
                 TextureRegion region = getCell(x, y);
 
+                if (region == null) {
+                    //transparent cell without tile
+                    continue;
+                }
+
+                //LocalLogger.print("(" + x + ", " + y + ") region (" + region.getRegionX() + ", " + region.getRegionY() + ")");
+
                 float tileXPos = x * this.tileWidth + this.xPos;
                 float tileYPos = (this.height - 1 - y) * this.tileHeight + this.yPos;
 
