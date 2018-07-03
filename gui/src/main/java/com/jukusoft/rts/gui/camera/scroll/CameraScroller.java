@@ -1,13 +1,12 @@
 package com.jukusoft.rts.gui.camera.scroll;
 
 import com.badlogic.gdx.Gdx;
-import com.jukusoft.rts.core.logging.LocalLogger;
 import com.jukusoft.rts.core.time.GameTime;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 
 public class CameraScroller {
 
-    protected static float DISTANCE_BETWEEN_BORDER = 200;
+    protected static final float DISTANCE_BETWEEN_BORDER = 200;
     protected static float SCROLLING_SPEED = 500;
 
     //flag, if camera scrolling is enabled, will be disabled if camera is fixed or moved from story
