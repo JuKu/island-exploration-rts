@@ -17,6 +17,15 @@ addons:
   sonarcloud:
     organization: "jukusoft"
 
+deploy:
+  provider: releases
+  api_key: "${GITHUB_OAUTH_TOKEN}"
+  file: "desktop/target/ship-rts-desktop-1.0.0-SNAPSHOT-bin.zip"
+  skip_cleanup: true
+  on:
+    branch: staging
+#    tags: true
+
 script:
 #  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - mvn clean install
