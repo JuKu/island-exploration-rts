@@ -17,6 +17,7 @@ import com.jukusoft.rts.core.utils.Platform;
 import com.jukusoft.rts.core.utils.Utils;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.camera.CameraHelper;
+import com.jukusoft.rts.gui.camera.scroll.CameraScroller;
 import com.jukusoft.rts.gui.renderer.island.IslandRenderer;
 import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
@@ -59,6 +60,8 @@ public class GameScreen implements IScreen {
     protected Game game = null;
     protected ScreenManager<IScreen> screenManager = null;
 
+    protected CameraScroller scroller = null;
+
     @Override
     public void onStart(Game game, ScreenManager<IScreen> screenManager) {
         // create sprite batcher
@@ -66,6 +69,8 @@ public class GameScreen implements IScreen {
 
         this.game = game;
         this.screenManager = screenManager;
+
+        this.scroller = new CameraScroller();
     }
 
     @Override
@@ -107,6 +112,9 @@ public class GameScreen implements IScreen {
 
     @Override
     public void update(Game game, ScreenManager<IScreen> screenManager) {
+        //scroll camera
+        this.scroller.scroll(this.camera);
+
         //update main camera
         this.camera.update(time);
 
