@@ -54,6 +54,9 @@ public class GameGUI implements ApplicationListener {
         this.screenManager.addScreen(Screens.LOAD_GAME, new LoadGameScreen());
         this.screenManager.addScreen(Screens.PLAY_GAME, new GameScreen());
 
+        //add HUD
+        this.screenManager.addScreen(Screens.HUD_SCREEN, new HUDScreen());
+
         //activate screen
         this.screenManager.leaveAllAndEnter(Screens.MAIN_MENU);
 
