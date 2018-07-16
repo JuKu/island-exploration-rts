@@ -57,6 +57,9 @@ public class InputManagerTest extends GameUnitTest {
         //check order
         assertEquals(processor1, manager.getProcessors().get(0));
         assertEquals(processor, manager.getProcessors().get(1));
+
+        manager.clear();
+        assertEquals(0, manager.countProcessors());
     }
 
     @Test (expected = IllegalStateException.class)

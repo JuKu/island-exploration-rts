@@ -58,6 +58,10 @@ public class InputManager {
         return this.inputMultiplexer.size();
     }
 
+    public void clear () {
+        this.inputMultiplexer.clear();
+    }
+
     public static InputManager getInstance () {
         return instance;
     }
