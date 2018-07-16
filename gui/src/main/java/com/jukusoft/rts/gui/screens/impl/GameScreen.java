@@ -1,5 +1,6 @@
 package com.jukusoft.rts.gui.screens.impl;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -18,6 +19,7 @@ import com.jukusoft.rts.core.utils.Utils;
 import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 import com.jukusoft.rts.gui.camera.scroll.CameraScroller;
+import com.jukusoft.rts.gui.input.InputManager;
 import com.jukusoft.rts.gui.renderer.island.IslandRenderer;
 import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
@@ -88,6 +90,9 @@ public class GameScreen implements IScreen {
         //load water renderer
         this.waterRenderer = new WaterRenderer();
         this.waterRenderer.load("data/misc/water/water.atlas", "water", 1000f / 8);
+
+        //set input multiplexer
+        InputManager.getInstance().setGdxInputProcessor();
     }
 
     @Override
@@ -97,6 +102,9 @@ public class GameScreen implements IScreen {
         //dispose water renderer
         this.waterRenderer.dispose();
         this.waterRenderer = null;
+
+        //reset input multiplexer
+        Gdx.input.setInputProcessor(null);
     }
 
     @Override
