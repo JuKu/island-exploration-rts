@@ -18,6 +18,7 @@ import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.screens.Screens;
 import com.jukusoft.rts.gui.screens.impl.*;
+import com.jukusoft.rts.gui.utils.ScreenshotUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class GameGUI implements ApplicationListener {
     protected final GameTime time = GameTime.getInstance();
     protected final FPSManager fps = FPSManager.getInstance();
     protected final GameAssetManager assetManager = GameAssetManager.getInstance();
+
+    protected static final String APP_NAME = "shipRTS";
 
     //window background (clear) color
     protected Color bgColor = Color.BLACK;
@@ -105,6 +108,25 @@ public class GameGUI implements ApplicationListener {
             } else {
                 Graphics.DisplayMode primaryMode = Gdx.graphics.getDisplayMode();
                 Gdx.graphics.setFullscreenMode(primaryMode);
+            }
+        }
+
+        //take screenshots with keys CTRL + C
+        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+            //generate screenshot path
+            String screenshotPath = ScreenshotUtils.getScreenshotPath(APP_NAME);
+
+            //take screenshot
+            try {
+                ScreenshotUtils.takeScreenshot(screenshotPath);
+
+                Gdx.app.log("Screenshot", "take an new screenshot, saved to " + screenshotPath + ".");
+            } catch (IOException e) {
+                Gdx.app.error("Screnshot", "Cannot save screenshot (" + screenshotPath + "), because IOException was thrown.", e);
+                e.printStackTrace();
+            } catch (Exception e) {
+                Gdx.app.error("Screnshot", "Cannot save screenshot, because Exception was thrown.", e);
+                e.printStackTrace();
             }
         }
 
