@@ -20,6 +20,7 @@ import com.jukusoft.rts.gui.assetmanager.GameAssetManager;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 import com.jukusoft.rts.gui.camera.scroll.CameraScroller;
 import com.jukusoft.rts.gui.input.InputManager;
+import com.jukusoft.rts.gui.input.impl.ZoomInputProcessor;
 import com.jukusoft.rts.gui.renderer.island.IslandRenderer;
 import com.jukusoft.rts.gui.renderer.water.WaterRenderer;
 import com.jukusoft.rts.gui.screens.IScreen;
@@ -93,6 +94,9 @@ public class GameScreen implements IScreen {
 
         //set input multiplexer
         InputManager.getInstance().setGdxInputProcessor();
+
+        //add zoom input processor
+        InputManager.getInstance().add(new ZoomInputProcessor(camera));
     }
 
     @Override
