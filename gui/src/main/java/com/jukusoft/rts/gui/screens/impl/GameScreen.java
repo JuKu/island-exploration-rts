@@ -97,6 +97,9 @@ public class GameScreen implements IScreen {
 
         //add zoom input processor
         InputManager.getInstance().add(new ZoomInputProcessor(camera));
+
+        //push HUD
+        screenManager.push(Screens.HUD_SCREEN);
     }
 
     @Override
@@ -109,6 +112,9 @@ public class GameScreen implements IScreen {
 
         //reset input multiplexer
         Gdx.input.setInputProcessor(null);
+
+        //remove HUD screen
+        screenManager.pop();
     }
 
     @Override
