@@ -116,8 +116,17 @@ public class DefaultScreenManagerTest extends GameUnitTest {
     @Test
     public void testPush () {
         ScreenManager<IScreen> manager = this.createScreenManager();
-        manager.addScreen("dummy_screen", new DummyScreen());
+        DummyScreen screen = new DummyScreen();
+        DummyScreen screen1 = new DummyScreen();
+        assertNotEquals(screen, screen1);
+
+        manager.addScreen("dummy_screen", screen);
+        manager.addScreen("dummy_screen2", screen1);
+
         manager.push("dummy_screen");
+        manager.push("dummy_screen2");
+
+        //TODO: check render order
     }
 
     @Test

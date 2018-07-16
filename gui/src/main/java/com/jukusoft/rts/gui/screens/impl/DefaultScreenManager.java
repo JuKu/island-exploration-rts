@@ -208,7 +208,7 @@ public class DefaultScreenManager implements ScreenManager<IScreen> {
     public void update() {
         for (int i = 0; i < this.activeScreens.size(); i++) {
             //get screen
-            IScreen screen = this.activeScreens.get(i);
+            IScreen screen = this.activeScreens.get(this.activeScreens.size() - i - 1);
 
             //update screen
             screen.update(this.game, this);
@@ -219,7 +219,7 @@ public class DefaultScreenManager implements ScreenManager<IScreen> {
     public void draw() {
         for (int i = 0; i < this.activeScreens.size(); i++) {
             //get screen
-            IScreen screen = this.activeScreens.get(i);
+            IScreen screen = this.activeScreens.get(this.activeScreens.size() - i - 1);
 
             //draw screen
             screen.draw(this.game);
