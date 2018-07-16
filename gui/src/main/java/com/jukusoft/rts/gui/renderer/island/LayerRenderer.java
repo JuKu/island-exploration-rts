@@ -49,10 +49,17 @@ public class LayerRenderer implements IRenderer {
             return;
         }
 
-        for (int y = 0; y < this.height; y++) {
-            for (int x = 0; x < this.width; x++) {
+        int startXIndex = (int) (camera.getX() - this.xPos) / this.tileWidth;
+        int startYIndex = (int) (camera.getY() - this.yPos) / this.tileHeight;
+
+        //max(startX, 0)
+        startXIndex = startXIndex > 0 ? startXIndex : 0;
+        startYIndex = startYIndex > 0 ? startYIndex : 0;
+
+        for (int y = startYIndex; y < this.height; y++) {
+            for (int x = startXIndex; x < this.width; x++) {
                 //get cell
-                TextureRegion region = getCell(x, y);
+                TextureRegion region = getCell(x, this.height - y - 1);
 
                 if (region == null) {
                     //transparent cell without tile
@@ -60,7 +67,7 @@ public class LayerRenderer implements IRenderer {
                 }
 
                 float tileXPos = x * this.tileWidth + this.xPos;
-                float tileYPos = (this.height - 1 - y) * this.tileHeight + this.yPos;
+                float tileYPos = y * this.tileHeight + this.yPos;
 
                 //render tile
                 batch.draw(region, tileXPos, tileYPos, this.tileWidth, this.tileHeight);
