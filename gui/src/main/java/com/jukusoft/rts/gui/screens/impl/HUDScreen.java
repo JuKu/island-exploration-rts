@@ -14,6 +14,7 @@ import com.jukusoft.rts.gui.input.InputManager;
 import com.jukusoft.rts.gui.screens.IScreen;
 import com.jukusoft.rts.gui.screens.ScreenManager;
 import com.jukusoft.rts.gui.utils.SkinFactory;
+import com.teamunify.i18n.I;
 
 public class HUDScreen implements IScreen {
 
@@ -37,6 +38,9 @@ public class HUDScreen implements IScreen {
     //widgets
     protected Image logo = null;
     protected Label fpsLabel = null;
+
+    //translations
+    protected String fpsText = I.tr("FPS");
 
     public HUDScreen () {
         //
@@ -106,7 +110,7 @@ public class HUDScreen implements IScreen {
     @Override
     public void update(Game game, ScreenManager<IScreen> screenManager) {
         //update FPS
-        fpsLabel.setText("FPS: " + FPSManager.getInstance().getFPS());
+        fpsLabel.setText(fpsText + ": " + FPSManager.getInstance().getFPS());
     }
 
     @Override
