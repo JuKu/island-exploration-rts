@@ -1,7 +1,6 @@
 package com.jukusoft.rts.gui.input.impl;
 
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputProcessor;
 import com.jukusoft.rts.gui.camera.CameraHelper;
 
 public class ZoomInputProcessor extends InputAdapter {

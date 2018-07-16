@@ -63,9 +63,6 @@ public class HUDScreen implements IScreen {
 
     @Override
     public void onResize(int width, int height) {
-        /*stage.getViewport().setScreenWidth(width);
-        stage.getViewport().setScreenHeight(height);
-        stage.getViewport().update(width, height, true);*/
         stage.getViewport().setScreenPosition(0, 0);
         stage.getViewport().setScreenSize(width, height);
 
@@ -80,7 +77,7 @@ public class HUDScreen implements IScreen {
 
     @Override
     public void update(Game game, ScreenManager<IScreen> screenManager) {
-
+        //we dont need to do anything here
     }
 
     @Override
